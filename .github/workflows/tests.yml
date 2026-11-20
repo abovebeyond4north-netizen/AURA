@@ -1,0 +1,23 @@
+name: quality-gates
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e '.[dev]'
+      - run: pytest
+        env:
+          AURA_REQUIRE_GYMNASIUM: "1"
+      - run: python scripts/train.py --config configs/cpu_smoke.yaml
+      - run: python scripts/evaluate.py --config configs/cpu_smoke.yaml
