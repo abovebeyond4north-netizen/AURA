@@ -112,3 +112,14 @@ Section 08 remains partial. The strict candidate removes the passage notificatio
 
 ### v66 hazard-weighted movement dynamics
 Section 08 remains partial. Weighted candidate 66/96 versus v65 strict 34/96, v64 43/96, v65 replanning 46/96 and uniform-prior ablation 47/96 on matched public fresh/stress cases. No incorrect audited candidate poses or mapping identifications; 39 focused tests passed and 480 records replayed exactly. Fixed engineered hazard, bounded deterministic recovery, no independent holdout, full regression or default promotion. See `docs/v66_hazard_dynamics.md`.
+
+## v108 official backend gate
+
+Section 03 remains partial: five official Gymnasium checker cases added and CI explicitly requires the backend. Local fallback: 12 passed, five official cases skipped; required-backend run fails as intended because Gymnasium is absent. Installation attempt failed. Rendering conformance and hosted platform results remain open. Historical v107 partitioned regression evidence retained; no acceptance changes. See `verification/v108/`.
+
+## v109 integrated runtime regression
+Complete single-process pytest summary: 306 passed, 10 skipped, 5 subtests passed; outer exit not captured. Separate namespace opt-in: 5 passed, exit 0. Five official Gymnasium tests remain unavailable. No acceptance upgrade. See `verification/v109/`.
+
+## v110 runtime recheck
+
+Full-suite retry timed out before summary; partial log preserved. Ten focused world-model tests passed with exit zero. All statuses unchanged. See `verification/v110/`.
