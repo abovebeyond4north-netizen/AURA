@@ -1,0 +1,23 @@
+{
+  "collected": 310,
+  "unique_passed": 310,
+  "outstanding": [],
+  "cumulative": {
+    "v101": 64,
+    "v102": 148,
+    "v103": 172,
+    "v104": 208,
+    "v105": 232,
+    "v106": 262,
+    "v107": 310
+  },
+  "inherited_hashes": 1048,
+  "unchanged_v101_source_test_paths": 201,
+  "acceptance": {
+    "Open": 3,
+    "Partial": 14,
+    "Verified locally": 13,
+    "Ongoing": 1
+  },
+  "scope": "partitioned archived evidence; no single-process claim"
+}
