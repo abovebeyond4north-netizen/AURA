@@ -1,0 +1,15 @@
+Fsssss                                                                   [100%]
+=================================== FAILURES ===================================
+_____________________ test_backend_required_when_requested _____________________
+
+    def test_backend_required_when_requested():
+        if os.environ.get('AURA_REQUIRE_GYMNASIUM') == '1':
+>           assert HAS_GYMNASIUM, 'Official Gymnasium backend required by this run'
+E           AssertionError: Official Gymnasium backend required by this run
+E           assert False
+
+tests/test_gymnasium_conformance.py:10: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_gymnasium_conformance.py::test_backend_required_when_requested - AssertionError: Official Gymnasium backend required by this run
+assert False
+1 failed, 5 skipped in 0.09s
