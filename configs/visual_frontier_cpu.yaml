@@ -1,0 +1,14 @@
+seed: 42
+device: cpu
+steps: 80
+batch_size: 12
+warmup: 12
+latent_dim: 16
+hidden_dim: 32
+ensemble_size: 3
+lr: 0.002
+max_episode_steps: 40
+epsilon: 0.04
+log_dir: runs/visual_frontier_cpu
+improvement_interval: 0
+curiosity_policy: visual_frontier

@@ -1,0 +1,3 @@
+# v77 regression recovery
+
+No controller or protected verifier changes. General suite 232 passed, 5 skipped, 5 subtests passed, exit 0; verifier suite 45 passed, exit 0. Both partitions used the same extracted v76 source. Historical bundles recovered and ancestry checked: f582278, 2c8f161 and 8fe6ce2 are ancestors of f0ab324. All 391 tracked files present, 3 differ (see integrity.json); 676 previous manifest entries match. Later commit 4acadba unavailable; no new historical merge asserted. Gymnasium and TensorBoard missing; offline install failed. No independent evaluation or new controller benchmark. All 31 statuses unchanged (13 local). Next: hypothesis-conditioned spatial memory, official runtime matrix, verifier isolation. Logs in verification/v77.

@@ -1,0 +1,7 @@
+# Section 07 · Uncertainty
+
+The transition risk monitor builds a frozen residual threshold per action. It uses separate calibration outcomes and returns an unknown result if the action has insufficient calibration data for the requested rank. Out-of-band outcomes can trigger a request for fresh evidence. This complements the existing ensemble-disagreement and observation-shift diagnostics.
+
+The study fitted a mean next-image predictor on 64 normal gridworld resets per action and calibrated on 100 different resets per action. Eight seeded studies each evaluated 200 transitions per regime using unseen seeds. All test regimes started from the same camera state after key pickup. The nominal false-alarm rate was 9.625% at the requested 10%. The residual monitor detected 100% of reversed-control transitions and 100% of transitions with heavy sensor corruption. Identical observed states and actions produced zero conditional variance with a stable noiseless rule and positive variance when the hidden rule alternated.
+
+Run `python -m experiments.gridworld_uncertainty --output uncertainty.json` to reproduce. The five focused risk and environment tests passed. The result applies to one-step residuals, two actions and the tested shifts. Detection requires the next observation, so it cannot warn before the first shifted transition. Conditional variance can arise from hidden state, and these tests do not establish calibrated neural rollout confidence or a causal decomposition of uncertainty.

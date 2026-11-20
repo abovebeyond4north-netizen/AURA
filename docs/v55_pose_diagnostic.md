@@ -1,0 +1,5 @@
+# v55 posterior activation diagnostic
+
+Compared inherited v50 passage controller against instrumented v54 on seeds 85100–85104, three layout sizes (9,11,13), both reversal settings and noise 0,.03,.08; 65-action cap. 180 trials total. Both achieved 20/30, 20/30, 18/30 respectively. Posterior update invoked zero times; all 32 failures per arm report movement inconsistent with camera contract. The fallback only executes when anchor votes are absent and all prior alignment methods abstain; contradictory accepted estimates bypass it. Exact cause of each failure not yet isolated.
+
+Separate synthetic diagnostic on 500 independent 3% corruption and 500 2x2 burst corruption frame pairs (seed 85201), sampled four-color textured scenes, known shifts and noisy expected-motion prior: 500/500 correct and accepted in each condition. This synthetic generator is not representative of sparse or changing grid scenes and does not establish calibration; no grid truth labels are collected by this study. Ten focused tests passed. No controller changes, promotion, full regression, new commit or bundle. 13/31 inherited acceptance unchanged, section 08 partial.

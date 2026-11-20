@@ -1,0 +1,7 @@
+# Section 11 · Concept discovery
+
+The opt-in concept library fits predictive prototypes from observed, unlabeled features and measured outcomes. It proposes creation, splitting, merging, and retirement. It scores each proposal as the sum of its prediction and transfer error reductions minus 0.02 per added prototype. An accepted proposal must improve the score without increasing either error. Each decision stores its component scores, evidence IDs, and restorable state in the ledger.
+
+The experiment used five seeds and four stages per seed. All 20 lifecycle decisions matched the expected operation, and reconstruction from the ledger preserved the model predictions. The final transfer observations were generated after each selection, with a different signal offset and jitter from the development data. After a rule change, splitting reduced mean final prediction MSE from 0.0900 to 0.0025. Merging after simplification reduced MSE from 0.0915 to zero. When features stopped carrying predictive information, retirement recovered the constant baseline.
+
+Run `python -m experiments.concept_lifecycle --output runs/lifecycle` from the source directory. Full scores and the verified ledger are in `verification/section11/`. This result covers a controlled simulator with scalar features, fixed latent categories and prespecified rule changes. Main-gridworld representations and broader transfer remain outside the demonstrated scope. The existing neural training path uses its original concept estimator.

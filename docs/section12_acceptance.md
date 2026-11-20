@@ -1,0 +1,7 @@
+# Section 12 · Skill learning and reuse
+
+The gridworld experiment records image evidence for randomized primitive pairs at a closed doorway. It selects a two-action option only after repeated successes and freezes its actions before testing. Five training runs selected interaction followed by movement toward the observed door. The option checks the visible initiation cue, aborts if the door remains closed, and confirms physical movement. The study records withdrawal eligibility after three consecutive failures in the missing-key context.
+
+Training used 75 episodes per seed at the original 9×9 doorway. Held-out testing used four shifted-door layouts across 9×9 and 11×11 worlds. The learned option crossed 100/100 times versus 2/100 for random pairs under the same two-action allowance. Both policies used the same visual planner after passage. The composed plan reached 25/100 goals versus 0/100 for random pairs. The planner requires the goal to be visible from the doorway. The option abstained from advancing in all 100 missing-key trials.
+
+Reproduce with `python -m experiments.gridworld_skill_transfer --output runs/section12`. Raw trials and results are in `verification/section12/`. The five existing door-study regression tests passed. The local criterion covers a prepared initiation state, key-controlled doors and noiseless images. It does not establish unrestricted navigation or transfer to altered action mappings.

@@ -1,0 +1,13 @@
+seed: 123
+device: auto
+steps: 20000
+batch_size: 64
+warmup: 256
+latent_dim: 48
+hidden_dim: 96
+ensemble_size: 5
+lr: 0.0005
+max_episode_steps: 70
+epsilon: 0.2
+log_dir: runs/training
+improvement_interval: 3000

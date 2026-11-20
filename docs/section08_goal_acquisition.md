@@ -1,0 +1,30 @@
+# Section 08 · From exploration to goal acquisition
+
+The opt-in controller combines image-based key and doorway preparation, control recalibration, and frontier search. After crossing the door, it selects reachable viewpoints by new camera coverage per travel action until it sees a reachable goal. An ablation uses identical preparation and stops if it cannot see a reachable goal. Random actions are a second baseline. All three use the same 65-action cap.
+
+| Observations | Frontier | Visible goal only | Random |
+|---|---:|---:|---:|
+| Clean | 60/80 | 20/80 | 0/80 |
+| 3% pixel corruption | 49/80 | 17/80 | 0/80 |
+
+Each observation condition uses four geometries, two control mappings and ten seeds per cell. Clean repeats within a geometry and mapping are deterministic. The controller failed all clean trials at the 11×11 column-four geometry because it could not verify camera displacement. Section 08 remains partial. The experiment evaluates goal-directed visual search with known preparation and a palette, and leaves broad key-world robustness and transfer to other task families open.
+
+Reproduce with `python -m experiments.goal_acquisition --output goal_acquisition.json`. The repeat run reproduced the archived action traces and results byte for byte. Eight focused door and layout regression tests passed.
+
+## v47 stationary alignment repair
+Parent 99fe650; baseline JSON replayed byte-for-byte. At seed 72100, 11x11 column 4, action 19, the center agent marker biases ordinary alignment toward zero. Excluding both center positions yields unique exact rightward agreement (1.0 versus 0.9583 zero, 0.95 left). The experiment-only GoalCamera uses this exact unique alignment for anchorless views, otherwise retains legacy matching. Ties do not produce a new motion estimate. This is not a general localization recovery algorithm. Same public trials and 65-action cap: clean frontier 80/80 versus 60/80; noisy 49/80 unchanged; visible-only 20/80 clean and 17/80 noisy unchanged; random zero. Both clean mappings on the failing geometry now succeed. New run replayed byte-for-byte; 12 focused tests and 5 subtests passed. No independent holdout, full suite, or protected promotion. Section 08 remains partial.
+
+## v48 palette-masked alignment
+Experimental subclass masks off-palette RGB values, excludes agent centers, requires at least 30 valid pairs for every shift, unique zero mismatches and at least two mismatches for every rival. Legacy fallback and anchor behavior remain unchanged. Same 65-action cap, four layouts, two mappings. Public development seeds 72100–72109: clean 80/80 both, noisy baseline 49/80 vs candidate 67/80. Separate public seeds 72200–72209: clean 80/80 both, noisy 54/80 vs 72/80. Fresh traces replay byte-for-byte; seven focused tests passed. Known palette and uniform corruption assumption, no independent holdout or persistent pose recovery. No promotion. Reproduce with python -m experiments.palette_goal_study --seed-start 72200 --output NEW.json.
+
+## v49 calibration recovery
+On fresh public seeds 74100–74109, paired v48 vs recovery camera (same four layouts, both control mappings, 65-action limit): clean 80/80 each; 3% corruption 62/80 vs 76/80. Calibration-axis failures 12 to 0, ambiguous calibration 2 to 0; two door occlusions and two movement failures remain. Uses previously observed tiles only when current pixel is unknown and palette alignment when no landmark votes exist. This is a bounded controller, not learned general localization; no private holdout, full regression or promotion. All 320 rows replayed byte-for-byte; five focused tests passed (two new). Reproduce: `python -m experiments.recovery_goal_study --seed-start 74100 --output NEW.json`.
+
+## v50 passage recovery
+Experimental PassageRecoveryCamera preserves visible-door verification and, only for an off-palette door pixel, attempts passage with existing motion verification. Failed motion raises rather than assuming success. Same 65-action cap, four layouts, both control mappings. Development seeds 74100–74109: clean 80/80 each, noisy v49 76/80 vs v50 78/80. Fresh public seeds 75100–75109: clean 80/80 each, noisy 74/80 vs 76/80. Four occlusion failures eliminated across both batches; six motion failures remain. Fresh 320 rows replay byte-for-byte; 11 focused tests passed. No independent holdout, full regression or promotion. Reproduce using `python -m experiments.passage_goal_study --seed-start 75100 --output NEW.json`. No persistent pose recovery yet.
+
+## v51 map-assisted fallback (negative result; not promoted)
+Candidate compares current known pixels to accumulated static wall occupancy for all five local shifts, requiring at least 20 matches per hypothesis, zero conflicts for a unique winner and at least two for every rival. Invoked only when prior frame-based mechanisms abstain. Public development seeds 75100–75109 and fresh 76100–76109, same four layouts/mappings/65-action cap: both arms 80/80 clean and 76/80 at 3% corruption in each batch. Development four movement failures each; fresh two movement and two no-isolated-approach failures each. 640 records; fresh 320 reproduced byte-for-byte; eight focused tests passed. No task-success gain, so v50 remains preferred. No full regression or independent holdout. Section 08 partial; register unchanged at 13/31. Next isolate disagreements versus abstentions and investigate incomplete route maps. Reproduce `python -m experiments.map_goal_study --seed-start 76100 --output NEW.json`.
+
+### v52 active re-observation (rejected)
+Against v50, a candidate attempts up to two wall bumps when alignment abstains and both expected and stationary poses share a mapped wall. It does not commit an unverified position. Seeds 73100–73109: both arms 80/80 clean and 78/80 noisy. Seeds 73200–73209: both arms 80/80 clean and 68/80 noisy. 640 trials; second batch replay byte-identical. Four focused tests passed. No gain; retain v50. The two-pose assumption and mapped-wall reliability are limitations; no general persistent belief tracker or full regression suite is demonstrated. Acceptance unchanged.
