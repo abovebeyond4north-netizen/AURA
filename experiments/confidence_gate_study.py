@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+from collections import Counter
 from pathlib import Path
 from experiments.persistent_pose_study import trial
 from aura.exploration.persistent_pose import PersistentPoseCamera
@@ -23,11 +24,20 @@ def run():
 
 
 def summarize(rows):
-    keys = {(r['seed'],r['size'],r['column'],r['reverse'],r['noise'],r['controller']) for r in rows}
-    if len(keys) != len(SEEDS)*len(LAYOUTS)*2*len(NOISE)*len(CONTROLLERS) or len(rows) != len(keys):
-        raise ValueError('Missing or duplicate paired trials')
-    if any(len(r['actions']) > 65 or r['pose_errors'] for r in rows):
-        raise ValueError('Exceeded action cap or incorrect localization')
+    expected = {(seed, size, col, reverse, noise, cls.__name__)
+                for seed in SEEDS for size, col in LAYOUTS
+                for reverse in (False, True) for noise in NOISE
+                for cls in CONTROLLERS}
+    counts = Counter((r['seed'], r['size'], r['column'], r['reverse'],
+                      r['noise'], r['controller']) for r in rows)
+    if set(counts) != expected or any(n != 1 for n in counts.values()):
+        raise ValueError('Missing, duplicate or unexpected paired trials')
+    if any(type(r['success']) is not bool or type(r['reverse']) is not bool
+           or type(r['pose_errors']) is not list
+           or len(r['actions']) > 65
+           or any(type(a) is not int or not 0 <= a <= 4 for a in r['actions'])
+           or r['pose_errors'] for r in rows):
+        raise ValueError('Invalid trace, action budget or pose audit')
     return {cls.__name__: {'successes':sum(r['success'] for r in rows if r['controller']==cls.__name__),
                             'trials':len(SEEDS)*len(LAYOUTS)*2*len(NOISE),
                             'actions':sum(len(r['actions']) for r in rows if r['controller']==cls.__name__)}
