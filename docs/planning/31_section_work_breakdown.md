@@ -647,6 +647,7 @@ Prioritize **P0 parallel tracks**: (A) Sections 03 + 28 for durable official dep
   - [ ] `AURA-16.4-T2-S2` Retain costs of failed proposals and divergent search paths
 
 **Section review gate:** Reconcile the above evidence with Section 16 in `docs/section_acceptance.md`, capture discrepancies and negative results, and obtain the required review before any status change.
+
 ---
 
 <a id="section-17"></a>
@@ -1241,3 +1242,4 @@ In the companion CSV/JSON, stable IDs are usable as issue titles, progress marke
 ## Deferred external dependencies
 
 The following cannot be self-certified by author-controlled code: a genuinely separate evaluator with custody of hidden scenarios, an independently authenticated signing key, hardware/kernel-dependent production isolation, and a third-party audit of successive accepted generations. Issues or automated signatures are **not** substitutes for an external assessor.
+
