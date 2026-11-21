@@ -9,6 +9,7 @@ import argparse
 from collections import Counter
 import hashlib
 import json
+import os
 from pathlib import Path
 import platform
 import sys
@@ -105,8 +106,8 @@ def run(m: dict) -> list[dict]:
                         cpu_ns = time.process_time_ns() - cpu
                         wall_ns = time.perf_counter_ns() - wall
                         record.update(
-                            full_episode_wall_ns=max(1, wall_ns),
-                            full_episode_cpu_ns=max(1, cpu_ns),
+                            full_episode_wall_ns=wall_ns,
+                            full_episode_cpu_ns=cpu_ns,
                             execution_order=execution_order)
                         rows.append(record)
     return rows
@@ -124,6 +125,7 @@ def main():
     result = {
         'protocol': m['protocol'],
         'manifest_sha256': hashlib.sha256(manifest_bytes).hexdigest(),
+        'source_commit': os.environ.get('GITHUB_SHA', 'local-unverified'),
         'metadata': {
             'python': sys.version.split()[0],
             'machine': platform.machine(),
