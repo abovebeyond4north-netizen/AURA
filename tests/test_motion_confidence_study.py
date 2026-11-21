@@ -70,4 +70,3 @@ def test_generated_study_receipt_replays_all_outcomes():
     assert data['summary'] == summarize(json.loads(manifest_raw),data['rows'])
     assert data['source_commit']
     assert data['independent'] is False and data['acceptance_promoted'] is False
-
