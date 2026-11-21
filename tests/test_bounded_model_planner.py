@@ -66,7 +66,11 @@ def test_rejects_imagined_target_and_invalid_masks():
 def test_real_world_model_predictions_are_finite_and_never_train_or_mutate_model():
     torch.manual_seed(3)
     model=WorldModel(latent_dim=8,hidden_dim=12,ensemble_size=2)
-    model.train_steps=1
+    x=np.stack((image(0),image(64),image(127),image(255)))
+    actions=np.array([0,1,2,3],dtype=np.int64)
+    y=np.stack((image(64),image(127),image(255),image(0)))
+    training_result=model.train_batch((x,actions,y))
+    assert model.train_steps==1 and np.isfinite(training_result['loss'])
     model.train()
     params={k:v.detach().clone() for k,v in model.state_dict().items()}
     p=BoundedModelPlanner(model,max_horizon=2,max_evaluations=16)
