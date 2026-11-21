@@ -5,7 +5,7 @@
   "source_commit": "04d6345d321d8b477af57dcb21378ec0ac9bb3d2",
   "source_pr": "https://github.com/abovebeyond4north-netizen/AURA/pull/4",
   "evidence_scope": "local_focused_reproduction_plus_controlled_public_trials",
-  "hosted_ci_status": "pending_final_head_review",
+  "hosted_ci_status": "verified_success_at_source_commit",
   "task_updates": [
     {
       "id": "AURA-24.3-T1-S1",
@@ -46,5 +46,41 @@
     "AURA-24.3-T2-S1",
     "AURA-08.2-T2-S1",
     "AURA-06.3-T2-S1"
-  ]
+  ],
+  "hosted_run": "https://github.com/abovebeyond4north-netizen/AURA/actions/runs/44905451529",
+  "hosted_source_sha": "04d6345d321d8b477af57dcb21378ec0ac9bb3d2",
+  "hosted_full_suite": {
+    "python311": {
+      "passed": 334,
+      "skipped": 6,
+      "subtests_passed": 5,
+      "exit_code": 0
+    },
+    "python312": {
+      "passed": 334,
+      "skipped": 6,
+      "subtests_passed": 5,
+      "exit_code": 0
+    }
+  },
+  "hosted_gymnasium": {
+    "python311": {
+      "passed": 8,
+      "exit_code": 0
+    },
+    "python312": {
+      "passed": 8,
+      "exit_code": 0
+    },
+    "warnings": "Direct checker emits missing EnvSpec alternative-render-mode warning; registered environment checker tests separately pass"
+  },
+  "hosted_post_data_focused": {
+    "python311": {
+      "passed": 5,
+      "exit_code": 0
+    },
+    "python312": "not scheduled"
+  },
+  "hosted_independence": false,
+  "acceptance_promotion": false
 }
