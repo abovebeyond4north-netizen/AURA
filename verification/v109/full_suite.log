@@ -1,0 +1,13 @@
+................................................................... [ 21%]
+......................................sssss............................. [ 43%]
+..........sssss......................................................... [ 66%]
+........................................................................ [ 89%]
+.................................                                        [100%]
+=========================== short test summary info ============================
+SKIPPED [5] tests/test_gymnasium_conformance.py:16: Official Gymnasium unavailable; fallback is not conformance evidence
+SKIPPED [1] tests/test_namespace_probe.py:7: requires explicitly enabled Linux namespace integration
+SKIPPED [1] tests/test_namespace_probe.py:12: requires explicitly enabled Linux namespace integration
+SKIPPED [1] tests/test_namespace_probe.py:19: requires explicitly enabled Linux namespace integration
+SKIPPED [1] tests/test_namespace_probe.py:24: requires explicitly enabled Linux namespace integration
+SKIPPED [1] tests/test_namespace_probe.py:31: requires explicitly enabled Linux namespace integration
+306 passed, 10 skipped, 5 subtests passed in 61.12s (0:01:01)

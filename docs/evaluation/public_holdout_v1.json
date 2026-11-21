@@ -1,0 +1,10 @@
+{
+  "protocol": "AURA-public-confirmation-v1",
+  "independent": false,
+  "action_cap": 65,
+  "seeds": [210041, 210042, 210043, 210044],
+  "layouts": [[9, 2], [13, 8], [15, 6]],
+  "reverse_after_key": [false, true],
+  "observation_noise": [0.03, 0.15, 0.20],
+  "controllers": ["EfficientRouteCamera", "PersistentPoseCamera", "ComposedRouteCamera"]
+}

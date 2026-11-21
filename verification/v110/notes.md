@@ -1,0 +1,2 @@
+# v110 runtime recheck
+Base 4c6971a. Full-suite reattempt was terminated by the execution deadline before a final summary or exit code; partial log retained. This does not supersede v109's completed summary. Targeted temporal heads, temporal residual and world-model tests: 10 passed, exit 0. No new behavioral or independent acceptance claim. Gymnasium remains unavailable. All four requested historical commits remain ancestors; protected verifier unchanged. Register remains 13/31 locally verified.

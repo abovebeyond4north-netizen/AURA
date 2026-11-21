@@ -1,0 +1,56 @@
+name: quality-gates
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    env:
+      AURA_REQUIRE_GYMNASIUM: "1"
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e '.[dev]'
+      - name: Reproduce exact historical fixtures (fail closed on hashes)
+        run: python -m tools.regenerate_ci_fixtures --report runs/fixture_replay.json
+      - name: Durable full pytest run
+        run: python -m tools.verified_pytest --output-dir runs/verification --label full --timeout 900
+      - name: Official Gymnasium conformance (separate exit evidence)
+        if: ${{ !cancelled() }}
+        run: python -m tools.verified_pytest --output-dir runs/verification --label official --timeout 120 -- tests/test_gymnasium_conformance.py
+      - name: Public held-out navigation (non-promoting)
+        if: ${{ !cancelled() && matrix.python-version == '3.11' }}
+        run: python -m tools.public_navigation_study --manifest docs/evaluation/public_holdout_v1.json --output runs/public_holdout_v1.json
+      - name: Audit navigation subgroup results and negative outcomes
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m tools.navigation_audit --manifest docs/evaluation/public_holdout_v1.json --results runs/public_holdout_v1.json --output runs/navigation_audit_v1.json
+      - name: Compare observable-landmark gate on frozen public seeds
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m experiments.confidence_gate_study --output runs/confidence_gate_v1.json
+      - name: Upload durable evidence even when checks fail
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aura-quality-evidence-py${{ matrix.python-version }}
+          path: |
+            runs/fixture_replay.json
+            runs/verification/
+            runs/public_holdout_v1.json
+            runs/navigation_audit_v1.json
+            runs/confidence_gate_v1.json
+          if-no-files-found: warn
+          retention-days: 90
