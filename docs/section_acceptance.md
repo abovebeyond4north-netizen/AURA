@@ -123,3 +123,34 @@ Complete single-process pytest summary: 306 passed, 10 skipped, 5 subtests passe
 ## v110 runtime recheck
 
 Full-suite retry timed out before summary; partial log preserved. Ten focused world-model tests passed with exit zero. All statuses unchanged. See `verification/v110/`.
+
+## v114–v118 carried-forward public Section 08 evidence
+
+v114: 384 paired stress trials found both controllers failed all size-13 trials.
+v115: existing persistent localization and route composition recovered scale
+performance on public confirmation trials (117/120 and 118/120 versus
+54/120 recovery), zero audited pose errors; controlled evidence only.
+v116: high-noise stress: composed 46/60, persistent 40/60, recovery 12/60;
+composed 7/20 at 20% corruption.
+v117: a distinct public seed set reversed the ordering: persistent 76/120,
+composed 66/120, recovery 8/120. Negative result preserved.
+v118: nine focused route tests passed (exit 0); full suite reached progress
+completion without a captured process exit. No acceptance promotions.
+
+## Hosted CI and public confirmation, November 2026
+
+2026-11-20 GitHub Actions run 44747487092 (Python 3.11 and 3.12)
+installed Gymnasium 1.2.2. Each completed 308 passes, 3 failures
+(missing historical Section 08 fixture files in GitHub checkout), 5
+skips (Linux namespace opt-in), and 5 passing subtests. The official
+Gymnasium checker exercised five task families successfully. These
+hosted results are stronger than earlier local fallback-only claims;
+full-suite success still requires rerun with historical inputs restored.
+
+The new reproducible fixture builder checks original exact SHA-256
+before writing any missing development data. The independently
+non-blinded PUBLIC confirmation matrix recorded EfficientRoute 20/72,
+PersistentPose 53/72, ComposedRoute 49/72; paired composition gains=8,
+regressions=12. Section 08 remains partial; independent external
+evaluation remains uncompleted and tracked in issue #1. No statuses
+in the 31-section register are upgraded by these observations.
