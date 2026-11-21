@@ -122,5 +122,3 @@ class BoundedModelPlanner:
         (_,actions),risk=best
         return PlanProposal('proposal',tuple(actions),actions[0],float(best[0][0]),risk,
                             evaluated,'hypothetical prediction only')
-
-
