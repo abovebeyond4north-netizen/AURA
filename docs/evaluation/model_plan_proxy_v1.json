@@ -1,0 +1,21 @@
+{
+  "protocol": "AURA-public-model-plan-proxy-v1",
+  "independent": false,
+  "training_seeds": [111,112,113,114,115,116,117,118],
+  "evaluation_seeds": [311,312,313,314],
+  "training_layout": [9,5],
+  "evaluation_layout": [13,7],
+  "steps_per_training_seed": 36,
+  "steps_per_evaluation_seed": 30,
+  "torch_seed": 174,
+  "numpy_training_seed": 155,
+  "train_updates": 80,
+  "batch_size": 24,
+  "latent_dim": 8,
+  "hidden_dim": 16,
+  "ensemble_size": 2,
+  "learning_rate": 0.002,
+  "action_candidates": [0,1,2,3],
+  "plan_horizon": 1,
+  "plan_quota": 4
+}

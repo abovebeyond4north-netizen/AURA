@@ -66,6 +66,14 @@ jobs:
         env:
           AURA_REQUIRE_MOTION_STUDY: "1"
         run: python -m tools.verified_pytest --output-dir runs/verification --label motion-data --timeout 120 -- tests/test_motion_confidence.py tests/test_motion_confidence_study.py
+      - name: Train world model on observed transitions and run public action proxy
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m experiments.model_plan_proxy_study --manifest docs/evaluation/model_plan_proxy_v1.json --output runs/model_plan_proxy_v1.json
+      - name: Verify source-bound model proxy evidence and negative trials
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        env:
+          AURA_REQUIRE_MODEL_PROXY: "1"
+        run: python -m tools.verified_pytest --output-dir runs/verification --label model-proxy --timeout 120 -- tests/test_bounded_model_planner.py tests/test_model_plan_proxy_study.py
       - name: Upload durable evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4
@@ -81,5 +89,6 @@ jobs:
             runs/navigation_resource_audit_v1.json
             runs/resource_profile_public_v1.json
             runs/motion_confidence_public_v1.json
+            runs/model_plan_proxy_v1.json
           if-no-files-found: warn
           retention-days: 90
