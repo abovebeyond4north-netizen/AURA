@@ -91,4 +91,3 @@ def test_camera_no_privileged_state_access():
     source=inspect.getsource(ConfidenceRollbackCamera)+inspect.getsource(OnlineMotionConfidence)
     for forbidden in ('diagnostic_state','env.agent','env.door','oracle_mapping'):
         assert forbidden not in source
-
