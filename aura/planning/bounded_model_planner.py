@@ -81,7 +81,8 @@ class BoundedModelPlanner:
         heads = getattr(self.model,'heads',None)
         if not heads:
             raise ValueError('An ensemble of model dynamics heads is required')
-        old_training = bool(self.model.training)
+        # Preserve every module flag, including deliberately frozen/eval submodules.
+        module_modes = [(module, bool(module.training)) for module in self.model.modules()]
         evaluated = 0
         best = None
         try:
@@ -116,7 +117,8 @@ class BoundedModelPlanner:
                     if best is None or key < best[0]:
                         best = key, mean_risk
         finally:
-            self.model.train(old_training)
+            for module, was_training in module_modes:
+                module.training = was_training
         if best is None:
             return PlanProposal('abstain',(),None,None,None,evaluated,'all rollouts exceed uncertainty limit')
         (_,actions),risk=best
