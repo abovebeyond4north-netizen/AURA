@@ -169,7 +169,7 @@ AURA-08.3-T2-S1,AURA-08.3-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,"Run
 AURA-08.3-T2-S2,AURA-08.3-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,"Report paired discordances, clustered uncertainty and all negative outcomes",unassessed,,,,
 AURA-08.4,AURA-08,subsection,08,Curiosity,Partial,P0,06;07;12;19;24,Learning efficiency and external replication,unassessed,,,,
 AURA-08.4-T1,AURA-08.4,task,08,Curiosity,Partial,P0,06;07;12;19;24,Quantify cost of autonomous exploration,unassessed,,,,
-AURA-08.4-T1-S1,AURA-08.4-T1,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,"Track actions, wall-time, training updates, compute and retained skills per success",unassessed,,,,
+AURA-08.4-T1-S1,AURA-08.4-T1,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,"Track actions, wall-time, training updates, compute and retained skills per success",in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/5,d659e6c395491f279b430eb2f4be65fc9f297f54,,"Goal action and observed CPU cost profiled; training steps and retained skill acquisition costs remain open"
 AURA-08.4-T1-S2,AURA-08.4-T1,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Demonstrate improvement under matched total learning budget,unassessed,,,,
 AURA-08.4-T2,AURA-08.4,task,08,Curiosity,Partial,P0,06;07;12;19;24,Request blind external replication,unassessed,,,,
 AURA-08.4-T2-S1,AURA-08.4-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Supply immutable source and evaluator interface to independent assessor,unassessed,,,,
@@ -513,7 +513,7 @@ AURA-23.3-T2-S2,AURA-23.3-T2,subtask,23,Training objectives,Partial,P1,06;07;15;
 AURA-24.1,AURA-24,subsection,24,Benchmarks,Partial,P0,03;06;08;19;25,Public regression baselines,unassessed,,,,
 AURA-24.1-T1,AURA-24.1,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Maintain fixed public matrix,unassessed,,,,
 AURA-24.1-T1-S1,AURA-24.1-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Run random, fixed, model-based, persistent and composed baselines",unassessed,,,,
-AURA-24.1-T1-S2,AURA-24.1-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Keep per-trial action traces, costs, seeds, configurations and hashes",unassessed,,,,
+AURA-24.1-T1-S2,AURA-24.1-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Keep per-trial action traces, costs, seeds, configurations and hashes",in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/5,d659e6c395491f279b430eb2f4be65fc9f297f54,,"Raw traces manifests seed groups source-bound CI and SHA-256 outputs added; no blinded evaluator"
 AURA-24.1-T2,AURA-24.1,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Preserve known counterexamples,unassessed,,,,
 AURA-24.1-T2-S1,AURA-24.1-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Retain v117 and v131 composition reversals and severe-noise failures,unassessed,,,,
 AURA-24.1-T2-S2,AURA-24.1-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Add tests that fail when adverse trials are omitted or duplicated,unassessed,,,,
@@ -529,8 +529,8 @@ AURA-24.3-T1,AURA-24.3,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Use paired g
 AURA-24.3-T1-S1,AURA-24.3-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Bootstrap at independent environment/seed cluster level,unassessed,,,,
 AURA-24.3-T1-S2,AURA-24.3-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Report effect size, uncertainty, negative controls and multiple-look policy",unassessed,,,,
 AURA-24.3-T2,AURA-24.3,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Match training/testing budgets,unassessed,,,,
-AURA-24.3-T2-S1,AURA-24.3-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Account for all model updates, additional diagnostics and probe actions",unassessed,,,,
-AURA-24.3-T2-S2,AURA-24.3-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Include per-controller wall-time and full search cost,unassessed,,,,
+AURA-24.3-T2-S1,AURA-24.3-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Account for all model updates, additional diagnostics and probe actions",in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/5,d659e6c395491f279b430eb2f4be65fc9f297f54,,"Historical episode/probe actions reconciled; total training updates and developer search cost remain unmeasured"
+AURA-24.3-T2-S2,AURA-24.3-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Include per-controller wall-time and full search cost,in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/5,d659e6c395491f279b430eb2f4be65fc9f297f54,,"Public runtime profile has measured full trial CPU and wall time; total learning and search cost remains unmeasured"
 AURA-24.4,AURA-24,subsection,24,Benchmarks,Partial,P0,03;06;08;19;25,External benchmark certification,unassessed,,,,
 AURA-24.4-T1,AURA-24.4,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Obtain independent evaluator agreement,unassessed,,,,
 AURA-24.4-T1-S1,AURA-24.4-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Supply immutable source, task interface and non-promoting receipt template",unassessed,,,,
