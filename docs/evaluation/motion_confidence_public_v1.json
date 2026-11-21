@@ -1,0 +1,12 @@
+{
+  "protocol": "AURA-public-motion-confidence-v1",
+  "independent": false,
+  "action_cap": 65,
+  "seeds": [98211, 98212],
+  "layouts": [[9, 5], [13, 7]],
+  "before_permutation_indices": [0, 7],
+  "after_offset": 11,
+  "observation_noise": [0.0, 0.08],
+  "change_windows": ["none", "door", "late"],
+  "controllers": ["EvidenceChangeCamera", "ConfidenceRollbackCamera"]
+}
