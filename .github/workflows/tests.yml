@@ -41,6 +41,12 @@ jobs:
       - name: Compare observable-landmark gate on frozen public seeds
         if: ${{ success() && matrix.python-version == '3.11' }}
         run: python -m experiments.confidence_gate_study --output runs/confidence_gate_v1.json
+      - name: Clustered paired navigation analysis (public exploratory only)
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m tools.paired_cluster_inference --manifest docs/evaluation/public_holdout_v1.json --public runs/public_holdout_v1.json --gated runs/confidence_gate_v1.json --output runs/paired_cluster_v1.json
+      - name: Reverify recorded comparisons with focused tests
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m tools.verified_pytest --output-dir runs/verification --label paired-data --timeout 120 -- tests/test_paired_cluster_inference.py
       - name: Upload durable evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,5 +58,6 @@ jobs:
             runs/public_holdout_v1.json
             runs/navigation_audit_v1.json
             runs/confidence_gate_v1.json
+            runs/paired_cluster_v1.json
           if-no-files-found: warn
           retention-days: 90
