@@ -61,7 +61,9 @@ def test_rejects_unbalanced_cluster_conditions():
 
 def test_known_negative_regression_if_available():
     public=ROOT/'runs/public_holdout_v1.json'
-    gate=ROOT/'runs/confidence_gate_public_v1.json'
+    gate=ROOT/'runs/confidence_gate_v1.json'
+    if not gate.exists():
+        gate=ROOT/'runs/confidence_gate_public_v1.json'
     manifest=ROOT/'docs/evaluation/public_holdout_v1.json'
     if not (public.is_file() and gate.is_file() and manifest.is_file()):
         pytest.skip('Local captured study files unavailable; CI executes both reports explicitly')
