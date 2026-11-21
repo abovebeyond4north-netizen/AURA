@@ -63,3 +63,20 @@ def test_fixed_public_manifest_is_complete():
     m = json.loads((ROOT/'docs/evaluation/public_resource_profile_v1.json').read_text())
     validate_manifest(m)
     assert len(m['seeds'])*len(m['layouts'])*2*len(m['observation_noise'])*len(CONTROLLERS)==216
+
+
+def test_generated_profile_receipt_integrity_when_present():
+    import os
+    import hashlib
+    path = ROOT / 'runs/resource_profile_public_v1.json'
+    if not path.exists():
+        if os.environ.get('AURA_REQUIRE_PUBLIC_STUDIES') == '1':
+            pytest.fail('Required generated runtime profile missing')
+        pytest.skip('Runtime profile generated after full CI collection')
+    mpath = ROOT / 'docs/evaluation/public_resource_profile_v1.json'
+    raw = mpath.read_bytes()
+    receipt = json.loads(path.read_bytes())
+    assert receipt['manifest_sha256'] == hashlib.sha256(raw).hexdigest()
+    assert receipt['independent'] is False and receipt['acceptance_promoted'] is False
+    assert receipt['summary'] == validate(receipt['rows'], json.loads(raw))
+    assert receipt.get('source_commit'), 'Profile must identify executed source'
