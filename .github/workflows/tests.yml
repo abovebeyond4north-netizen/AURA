@@ -38,6 +38,9 @@ jobs:
       - name: Audit navigation subgroup results and negative outcomes
         if: ${{ success() && matrix.python-version == '3.11' }}
         run: python -m tools.navigation_audit --manifest docs/evaluation/public_holdout_v1.json --results runs/public_holdout_v1.json --output runs/navigation_audit_v1.json
+      - name: Compare observable-landmark gate on frozen public seeds
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m experiments.confidence_gate_study --output runs/confidence_gate_v1.json
       - name: Upload durable evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4
@@ -48,5 +51,6 @@ jobs:
             runs/verification/
             runs/public_holdout_v1.json
             runs/navigation_audit_v1.json
+            runs/confidence_gate_v1.json
           if-no-files-found: warn
           retention-days: 90
