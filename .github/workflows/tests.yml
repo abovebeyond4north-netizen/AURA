@@ -47,6 +47,17 @@ jobs:
       - name: Reverify recorded comparisons with focused tests
         if: ${{ success() && matrix.python-version == '3.11' }}
         run: python -m tools.verified_pytest --output-dir runs/verification --label paired-data --timeout 120 -- tests/test_paired_cluster_inference.py
+      - name: Reconcile all public navigation costs and failed episodes
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m tools.navigation_resource_audit --manifest docs/evaluation/public_holdout_v1.json --public runs/public_holdout_v1.json --gated runs/confidence_gate_v1.json --output runs/navigation_resource_audit_v1.json
+      - name: Instrument frozen 216-episode public runtime profile
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m tools.navigation_runtime_profile --manifest docs/evaluation/public_resource_profile_v1.json --output runs/resource_profile_public_v1.json
+      - name: Recheck source-bound resource evidence after data generation
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        env:
+          AURA_REQUIRE_PUBLIC_STUDIES: "1"
+        run: python -m tools.verified_pytest --output-dir runs/verification --label resource-data --timeout 120 -- tests/test_navigation_resource_audit.py tests/test_navigation_runtime_profile.py
       - name: Upload durable evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4
@@ -59,5 +70,7 @@ jobs:
             runs/navigation_audit_v1.json
             runs/confidence_gate_v1.json
             runs/paired_cluster_v1.json
+            runs/navigation_resource_audit_v1.json
+            runs/resource_profile_public_v1.json
           if-no-files-found: warn
           retention-days: 90
