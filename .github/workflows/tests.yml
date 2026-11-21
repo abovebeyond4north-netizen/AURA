@@ -35,6 +35,9 @@ jobs:
       - name: Public held-out navigation (non-promoting)
         if: ${{ !cancelled() && matrix.python-version == '3.11' }}
         run: python -m tools.public_navigation_study --manifest docs/evaluation/public_holdout_v1.json --output runs/public_holdout_v1.json
+      - name: Audit navigation subgroup results and negative outcomes
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m tools.navigation_audit --manifest docs/evaluation/public_holdout_v1.json --results runs/public_holdout_v1.json --output runs/navigation_audit_v1.json
       - name: Upload durable evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4
@@ -44,5 +47,6 @@ jobs:
             runs/fixture_replay.json
             runs/verification/
             runs/public_holdout_v1.json
+            runs/navigation_audit_v1.json
           if-no-files-found: warn
           retention-days: 90
