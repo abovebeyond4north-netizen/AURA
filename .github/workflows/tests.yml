@@ -58,6 +58,14 @@ jobs:
         env:
           AURA_REQUIRE_PUBLIC_STUDIES: "1"
         run: python -m tools.verified_pytest --output-dir runs/verification --label resource-data --timeout 120 -- tests/test_navigation_resource_audit.py tests/test_navigation_runtime_profile.py
+      - name: Public changed-movement confidence comparison (non-promoting)
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        run: python -m experiments.motion_confidence_study --manifest docs/evaluation/motion_confidence_public_v1.json --output runs/motion_confidence_public_v1.json
+      - name: Validate changed-movement evidence after data generation
+        if: ${{ success() && matrix.python-version == '3.11' }}
+        env:
+          AURA_REQUIRE_MOTION_STUDY: "1"
+        run: python -m tools.verified_pytest --output-dir runs/verification --label motion-data --timeout 120 -- tests/test_motion_confidence.py tests/test_motion_confidence_study.py
       - name: Upload durable evidence even when checks fail
         if: always()
         uses: actions/upload-artifact@v4
@@ -72,5 +80,6 @@ jobs:
             runs/paired_cluster_v1.json
             runs/navigation_resource_audit_v1.json
             runs/resource_profile_public_v1.json
+            runs/motion_confidence_public_v1.json
           if-no-files-found: warn
           retention-days: 90
