@@ -54,3 +54,20 @@ def test_full_public_study_preserves_failure_records_without_promotion():
         edit(corrupted)
         with pytest.raises((ValueError,TypeError,KeyError)):
             summarize(m,corrupted)
+
+
+def test_generated_study_receipt_replays_all_outcomes():
+    import hashlib
+    import os
+    path = ROOT/'runs/motion_confidence_public_v1.json'
+    if not path.exists():
+        if os.environ.get('AURA_REQUIRE_MOTION_STUDY') == '1':
+            pytest.fail('Required generated motion confidence evidence is missing')
+        pytest.skip('Public study executed after the base regression suite')
+    data = json.loads(path.read_bytes())
+    manifest_raw = (ROOT/'docs/evaluation/motion_confidence_public_v1.json').read_bytes()
+    assert data['manifest_sha256'] == hashlib.sha256(manifest_raw).hexdigest()
+    assert data['summary'] == summarize(json.loads(manifest_raw),data['rows'])
+    assert data['source_commit']
+    assert data['independent'] is False and data['acceptance_promoted'] is False
+
