@@ -158,8 +158,8 @@ AURA-08.2-T1,AURA-08.2,task,08,Curiosity,Partial,P0,06;07;12;19;24,Diagnose came
 AURA-08.2-T1-S1,AURA-08.2-T1,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Replay the v117/v131 failures at 13x13/15x15 and 15–20% noise,unassessed,,,,
 AURA-08.2-T1-S2,AURA-08.2-T1,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,"Partition failures into ambiguous calibration, movement mismatch and missing landmarks",unassessed,,,,
 AURA-08.2-T2,AURA-08.2,task,08,Curiosity,Partial,P0,06;07;12;19;24,Improve uncertainty-aware movement inference,unassessed,,,,
-AURA-08.2-T2-S1,AURA-08.2-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Learn action effects from observations with confidence and rollback,unassessed,,,,
-AURA-08.2-T2-S2,AURA-08.2-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Check no evaluator-only position enters policy updates or action choice,unassessed,,,,
+AURA-08.2-T2-S1,AURA-08.2-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Learn action effects from observations with confidence and rollback,in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/6,d9f39baefb12912568065bedd5540801f8b8ffbe,,"RGB-only categorical motion support and rollback implemented; no full four-action mapping demonstrated in public trials"
+AURA-08.2-T2-S2,AURA-08.2-T2,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,Check no evaluator-only position enters policy updates or action choice,in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/6,d9f39baefb12912568065bedd5540801f8b8ffbe,,"Operational confidence code has no evaluator position or true control-mapping reads; independent validation still required"
 AURA-08.3,AURA-08,subsection,08,Curiosity,Partial,P0,06;07;12;19;24,Generalization and ablations,unassessed,,,,
 AURA-08.3-T1,AURA-08.3,task,08,Curiosity,Partial,P0,06;07;12;19;24,Test truly unseen environment families,unassessed,,,,
 AURA-08.3-T1-S1,AURA-08.3-T1,subtask,08,Curiosity,Partial,P0,06;07;12;19;24,"Freeze policy before sealed new sizes, rules, corruptions and movement transformations",unassessed,,,,
@@ -484,7 +484,7 @@ AURA-22.3-T2-S1,AURA-22.3-T2,subtask,22,Core integrated loop,Partial,P0,04;06;08
 AURA-22.3-T2-S2,AURA-22.3-T2,subtask,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,Restore all learner state on failure and retain failure lineage,unassessed,,,,
 AURA-22.4,AURA-22,subsection,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,Recovery and long-run endurance,unassessed,,,,
 AURA-22.4-T1,AURA-22.4,task,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,Run interrupted multi-hour smoke,unassessed,,,,
-AURA-22.4-T1-S1,AURA-22.4-T1,subtask,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,"Inject crashes, restarts, corrupt checkpoints and timeouts",unassessed,,,,
+AURA-22.4-T1-S1,AURA-22.4-T1,subtask,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,"Inject crashes, restarts, corrupt checkpoints and timeouts",in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/6,d9f39baefb12912568065bedd5540801f8b8ffbe,,"In-memory failed map commit is transactional; process-crash checkpoint/restart recovery remains unimplemented"
 AURA-22.4-T1-S2,AURA-22.4-T1,subtask,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,Verify resumed run matches deterministic reference on supported paths,unassessed,,,,
 AURA-22.4-T2,AURA-22.4,task,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,Bound memory and compute,unassessed,,,,
 AURA-22.4-T2-S1,AURA-22.4-T2,subtask,22,Core integrated loop,Partial,P0,04;06;08;10;12;13;15;16,Enforce runtime quotas without silently dropping evidence,unassessed,,,,
@@ -516,7 +516,7 @@ AURA-24.1-T1-S1,AURA-24.1-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Ru
 AURA-24.1-T1-S2,AURA-24.1-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,"Keep per-trial action traces, costs, seeds, configurations and hashes",in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/5,d659e6c395491f279b430eb2f4be65fc9f297f54,,"Raw traces manifests seed groups source-bound CI and SHA-256 outputs added; no blinded evaluator"
 AURA-24.1-T2,AURA-24.1,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Preserve known counterexamples,unassessed,,,,
 AURA-24.1-T2-S1,AURA-24.1-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Retain v117 and v131 composition reversals and severe-noise failures,unassessed,,,,
-AURA-24.1-T2-S2,AURA-24.1-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Add tests that fail when adverse trials are omitted or duplicated,unassessed,,,,
+AURA-24.1-T2-S2,AURA-24.1-T2,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Add tests that fail when adverse trials are omitted or duplicated,in_progress,https://github.com/abovebeyond4north-netizen/AURA/pull/6,d9f39baefb12912568065bedd5540801f8b8ffbe,,"Fixed 96 public paired trials with negative failures and source/manifest hashes; not an independent hidden test"
 AURA-24.2,AURA-24,subsection,24,Benchmarks,Partial,P0,03;06;08;19;25,Held-out generalization,unassessed,,,,
 AURA-24.2-T1,AURA-24.2,task,24,Benchmarks,Partial,P0,03;06;08;19;25,Preregister independent split,unassessed,,,,
 AURA-24.2-T1-S1,AURA-24.2-T1,subtask,24,Benchmarks,Partial,P0,03;06;08;19;25,Freeze model and development tuning before new environments are drawn,unassessed,,,,
