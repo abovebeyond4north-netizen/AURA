@@ -1,0 +1,50 @@
+{
+  "schema": "AURA-WBS-progress-v1",
+  "date": "2026-11-21",
+  "source_branch": "integration/paired-cluster-audit-v134",
+  "source_commit": "04d6345d321d8b477af57dcb21378ec0ac9bb3d2",
+  "source_pr": "https://github.com/abovebeyond4north-netizen/AURA/pull/4",
+  "evidence_scope": "local_focused_reproduction_plus_controlled_public_trials",
+  "hosted_ci_status": "pending_final_head_review",
+  "task_updates": [
+    {
+      "id": "AURA-24.3-T1-S1",
+      "state": "implemented_local_verified",
+      "evidence": "Exact 4^4 cluster bootstrap of four independent seeds per public study"
+    },
+    {
+      "id": "AURA-24.3-T1-S2",
+      "state": "implemented_local_verified",
+      "evidence": "Per-seed effects, exploratory intervals and uncorrected repeated-look caveat"
+    },
+    {
+      "id": "AURA-08.3-T2-S2",
+      "state": "implemented_local_verified",
+      "evidence": "Paired wins/losses retained from both public 216-trial matrices"
+    },
+    {
+      "id": "AURA-24.1-T2-S2",
+      "state": "implemented_local_verified",
+      "evidence": "Negative assertions reject missing or duplicated evidence, invalid traces or unbalanced strata"
+    }
+  ],
+  "tests": {
+    "command": "python -m pytest -q tests/test_paired_cluster_inference.py",
+    "passed": 5,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "acceptance_register": {
+    "locally_verified": 13,
+    "partial": 14,
+    "open": 3,
+    "ongoing": 1,
+    "changed": false
+  },
+  "outside_evaluation_complete": false,
+  "next_tasks": [
+    "AURA-24.3-T2-S1",
+    "AURA-08.2-T2-S1",
+    "AURA-06.3-T2-S1"
+  ]
+}
