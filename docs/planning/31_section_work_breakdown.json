@@ -1,0 +1,3863 @@
+{
+  "title": "AURA-Ω original 31-section hierarchical execution backlog",
+  "source_register": "docs/section_acceptance.md",
+  "register_status_count": {
+    "Open": 3,
+    "Partial": 14,
+    "Verified locally": 13,
+    "Ongoing": 1
+  },
+  "section_count": 31,
+  "subsection_count": 100,
+  "task_count": 200,
+  "subtask_count": 400,
+  "semantic_note": "Task checkboxes are unassessed and not section-acceptance changes",
+  "sections": [
+    {
+      "id": "01",
+      "title": "Mission",
+      "acceptance_status": "Open",
+      "priority": "P0",
+      "linked_sections": [
+        "02",
+        "06",
+        "08",
+        "16",
+        "17",
+        "24",
+        "25",
+        "30"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-01.1",
+          "title": "Operational definition of success",
+          "tasks": [
+            {
+              "id": "AURA-01.1-T1",
+              "title": "Define measurable autonomy targets",
+              "subtasks": [
+                {
+                  "id": "AURA-01.1-T1-S1",
+                  "title": "Specify predictive, planning, adaptation and recovery outcomes per task family"
+                },
+                {
+                  "id": "AURA-01.1-T1-S2",
+                  "title": "Fix minimum gains, maximum cost and permitted failure rates before testing"
+                }
+              ]
+            },
+            {
+              "id": "AURA-01.1-T2",
+              "title": "Establish baseline comparisons",
+              "subtasks": [
+                {
+                  "id": "AURA-01.1-T2-S1",
+                  "title": "Run random, fixed-curriculum, model-free and bounded model-based baselines"
+                },
+                {
+                  "id": "AURA-01.1-T2-S2",
+                  "title": "Match interaction counts, compute, seeds and starting weights across variants"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-01.2",
+          "title": "Generality and self-teaching",
+          "tasks": [
+            {
+              "id": "AURA-01.2-T1",
+              "title": "Test skills beyond a single gridworld",
+              "subtasks": [
+                {
+                  "id": "AURA-01.2-T1-S1",
+                  "title": "Add unfamiliar task mechanics and non-gridworld observation families"
+                },
+                {
+                  "id": "AURA-01.2-T1-S2",
+                  "title": "Separate adaptation after interaction from memorized environment-specific rules"
+                }
+              ]
+            },
+            {
+              "id": "AURA-01.2-T2",
+              "title": "Demonstrate self-directed learning",
+              "subtasks": [
+                {
+                  "id": "AURA-01.2-T2-S1",
+                  "title": "Log goals chosen without external task labels and their rationale"
+                },
+                {
+                  "id": "AURA-01.2-T2-S2",
+                  "title": "Compare goal choices against fixed and random exploration schedules"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-01.3",
+          "title": "Mission closure and limitations",
+          "tasks": [
+            {
+              "id": "AURA-01.3-T1",
+              "title": "Build mission-level evidence ledger",
+              "subtasks": [
+                {
+                  "id": "AURA-01.3-T1-S1",
+                  "title": "Link every capability claim to code, immutable trial results and evaluation version"
+                },
+                {
+                  "id": "AURA-01.3-T1-S2",
+                  "title": "Record counterexamples, regressions and explicit out-of-scope claims"
+                }
+              ]
+            },
+            {
+              "id": "AURA-01.3-T2",
+              "title": "Gate overall mission declaration",
+              "subtasks": [
+                {
+                  "id": "AURA-01.3-T2-S1",
+                  "title": "Require independent replication and successful two-generation improvement"
+                },
+                {
+                  "id": "AURA-01.3-T2-S2",
+                  "title": "Keep mission Open until dependent original sections satisfy their own gates"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Non-negotiable engineering requirements",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "17",
+        "21",
+        "28"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-02.1",
+          "title": "Initialization and observable learning",
+          "tasks": [
+            {
+              "id": "AURA-02.1-T1",
+              "title": "Audit learning-from-scratch initialization",
+              "subtasks": [
+                {
+                  "id": "AURA-02.1-T1-S1",
+                  "title": "Inspect checkpoint loading and eliminate unintended pretrained weights"
+                },
+                {
+                  "id": "AURA-02.1-T1-S2",
+                  "title": "Test two fresh initializations for independence and deterministic seeded behavior"
+                }
+              ]
+            },
+            {
+              "id": "AURA-02.1-T2",
+              "title": "Enforce evidence provenance",
+              "subtasks": [
+                {
+                  "id": "AURA-02.1-T2-S1",
+                  "title": "Label observed, simulated, inferred and externally supplied records distinctly"
+                },
+                {
+                  "id": "AURA-02.1-T2-S2",
+                  "title": "Reject laundering imagined data into observed replay or acceptance ledgers"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-02.2",
+          "title": "Isolation and protected verification",
+          "tasks": [
+            {
+              "id": "AURA-02.2-T1",
+              "title": "Harden execution boundary",
+              "subtasks": [
+                {
+                  "id": "AURA-02.2-T1-S1",
+                  "title": "Reproduce namespace, read-only mounts, seccomp and descriptor-closure probes"
+                },
+                {
+                  "id": "AURA-02.2-T1-S2",
+                  "title": "Run real worker through production isolation rather than only trusted microprobes"
+                }
+              ]
+            },
+            {
+              "id": "AURA-02.2-T2",
+              "title": "Keep verifier protections immutable",
+              "subtasks": [
+                {
+                  "id": "AURA-02.2-T2-S1",
+                  "title": "Hash trusted policy, threshold and evaluator code before and after runs"
+                },
+                {
+                  "id": "AURA-02.2-T2-S2",
+                  "title": "Attempt candidate edits to protected files, configurations and reward definitions; require rejection"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-02.3",
+          "title": "Reproducibility and failure handling",
+          "tasks": [
+            {
+              "id": "AURA-02.3-T1",
+              "title": "Specify compute and resource limits",
+              "subtasks": [
+                {
+                  "id": "AURA-02.3-T1-S1",
+                  "title": "Set CPU, memory, file, process, wall-time and network ceilings"
+                },
+                {
+                  "id": "AURA-02.3-T1-S2",
+                  "title": "Verify timeout, quota and denial outcomes are captured without orphaned processes"
+                }
+              ]
+            },
+            {
+              "id": "AURA-02.3-T2",
+              "title": "Validate failure-closed operation",
+              "subtasks": [
+                {
+                  "id": "AURA-02.3-T2-S1",
+                  "title": "Inject missing dependencies, malformed reports and ledger corruption"
+                },
+                {
+                  "id": "AURA-02.3-T2-S2",
+                  "title": "Ensure failed prerequisites produce nonzero exits and no silent fallback promotion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Technology stack",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "20",
+        "28"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-03.1",
+          "title": "Supported dependency matrix",
+          "tasks": [
+            {
+              "id": "AURA-03.1-T1",
+              "title": "Freeze supported runtimes",
+              "subtasks": [
+                {
+                  "id": "AURA-03.1-T1-S1",
+                  "title": "Pin Python, PyTorch, NumPy, Gymnasium and test-tool versions in lock/constraints"
+                },
+                {
+                  "id": "AURA-03.1-T1-S2",
+                  "title": "Execute fresh installs under Python 3.11 and 3.12 on hosted Linux"
+                }
+              ]
+            },
+            {
+              "id": "AURA-03.1-T2",
+              "title": "Validate core numerical backends",
+              "subtasks": [
+                {
+                  "id": "AURA-03.1-T2-S1",
+                  "title": "Test CPU-only training and deterministic inference"
+                },
+                {
+                  "id": "AURA-03.1-T2-S2",
+                  "title": "Exercise optional GPU/MPS backends or explicitly document unavailable devices"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-03.2",
+          "title": "Official simulator and telemetry interfaces",
+          "tasks": [
+            {
+              "id": "AURA-03.2-T1",
+              "title": "Certify Gymnasium API",
+              "subtasks": [
+                {
+                  "id": "AURA-03.2-T1-S1",
+                  "title": "Run official checker for all task families including render and seed semantics"
+                },
+                {
+                  "id": "AURA-03.2-T1-S2",
+                  "title": "Test gym.make registration, step/reset spaces, truncation and close lifecycle"
+                }
+              ]
+            },
+            {
+              "id": "AURA-03.2-T2",
+              "title": "Verify experiment telemetry",
+              "subtasks": [
+                {
+                  "id": "AURA-03.2-T2-S1",
+                  "title": "Confirm TensorBoard/scalar output, run IDs and checkpoint references"
+                },
+                {
+                  "id": "AURA-03.2-T2-S2",
+                  "title": "Rerun logging-disabled mode without breaking model training"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-03.3",
+          "title": "Portability and dependency resilience",
+          "tasks": [
+            {
+              "id": "AURA-03.3-T1",
+              "title": "Test clean-machine setup",
+              "subtasks": [
+                {
+                  "id": "AURA-03.3-T1-S1",
+                  "title": "Run editable install and commands in an isolated environment"
+                },
+                {
+                  "id": "AURA-03.3-T1-S2",
+                  "title": "Verify documented entrypoints without hidden local paths or untracked datasets"
+                }
+              ]
+            },
+            {
+              "id": "AURA-03.3-T2",
+              "title": "Track unsupported platforms",
+              "subtasks": [
+                {
+                  "id": "AURA-03.3-T2-S1",
+                  "title": "Probe macOS/Linux and optional isolation features separately"
+                },
+                {
+                  "id": "AURA-03.3-T2-S2",
+                  "title": "Mark unsupported combinations explicitly rather than treating skips as passes"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "System architecture",
+      "acceptance_status": "Partial",
+      "priority": "P1",
+      "linked_sections": [
+        "20",
+        "21",
+        "22"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-04.1",
+          "title": "Component contracts",
+          "tasks": [
+            {
+              "id": "AURA-04.1-T1",
+              "title": "Review all architectural layers",
+              "subtasks": [
+                {
+                  "id": "AURA-04.1-T1-S1",
+                  "title": "Map perception, world model, policy, memory, skills, curriculum and verifier to modules"
+                },
+                {
+                  "id": "AURA-04.1-T1-S2",
+                  "title": "Identify missing wiring and mocked/simplified substitutes"
+                }
+              ]
+            },
+            {
+              "id": "AURA-04.1-T2",
+              "title": "Enforce directional dependencies",
+              "subtasks": [
+                {
+                  "id": "AURA-04.1-T2-S1",
+                  "title": "Keep verifier and evaluator outside candidate-controlled imports"
+                },
+                {
+                  "id": "AURA-04.1-T2-S2",
+                  "title": "Add boundary tests preventing runtime components from mutating trusted assets"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-04.2",
+          "title": "End-to-end orchestration",
+          "tasks": [
+            {
+              "id": "AURA-04.2-T1",
+              "title": "Validate startup-to-checkpoint flow",
+              "subtasks": [
+                {
+                  "id": "AURA-04.2-T1-S1",
+                  "title": "Trace one fresh episode through observation, action, training, memory and save"
+                },
+                {
+                  "id": "AURA-04.2-T1-S2",
+                  "title": "Check identities, seeds and version tags across the full trajectory"
+                }
+              ]
+            },
+            {
+              "id": "AURA-04.2-T2",
+              "title": "Exercise multi-component adaptation",
+              "subtasks": [
+                {
+                  "id": "AURA-04.2-T2-S1",
+                  "title": "Run a task that requires a learned model plus retrieved skill and updated curriculum"
+                },
+                {
+                  "id": "AURA-04.2-T2-S2",
+                  "title": "Prove integration improves an outcome relative to components individually"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-04.3",
+          "title": "Reliability and extensibility",
+          "tasks": [
+            {
+              "id": "AURA-04.3-T1",
+              "title": "Introduce fault-isolation contracts",
+              "subtasks": [
+                {
+                  "id": "AURA-04.3-T1-S1",
+                  "title": "Define recovery for stalled environments, invalid observations and model divergence"
+                },
+                {
+                  "id": "AURA-04.3-T1-S2",
+                  "title": "Verify no partial state is marked committed after exceptions"
+                }
+              ]
+            },
+            {
+              "id": "AURA-04.3-T2",
+              "title": "Validate pluggable environments",
+              "subtasks": [
+                {
+                  "id": "AURA-04.3-T2-S1",
+                  "title": "Replace the gridworld via typed environment adapter"
+                },
+                {
+                  "id": "AURA-04.3-T2-S2",
+                  "title": "Confirm agent logic remains environment-agnostic without special-case oracle state"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Observation & representation learning",
+      "acceptance_status": "Verified locally",
+      "priority": "P2",
+      "linked_sections": [
+        "03",
+        "21"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-05.1",
+          "title": "Reproduce existing local gate",
+          "tasks": [
+            {
+              "id": "AURA-05.1-T1",
+              "title": "Re-run encoder learning regression",
+              "subtasks": [
+                {
+                  "id": "AURA-05.1-T1-S1",
+                  "title": "Confirm parameter updates and held-out loss reduction from random initialization"
+                },
+                {
+                  "id": "AURA-05.1-T1-S2",
+                  "title": "Preserve five-seed results, deviations and failed runs"
+                }
+              ]
+            },
+            {
+              "id": "AURA-05.1-T2",
+              "title": "Inspect representation collapse",
+              "subtasks": [
+                {
+                  "id": "AURA-05.1-T2-S1",
+                  "title": "Measure latent per-dimension variance and dead-feature count"
+                },
+                {
+                  "id": "AURA-05.1-T2-S2",
+                  "title": "Abort or alert on collapsed encodings while retaining traces"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-05.2",
+          "title": "Robust visual representations",
+          "tasks": [
+            {
+              "id": "AURA-05.2-T1",
+              "title": "Expand observation distributions",
+              "subtasks": [
+                {
+                  "id": "AURA-05.2-T1-S1",
+                  "title": "Include occlusion, color perturbation, distractors and spatial scaling"
+                },
+                {
+                  "id": "AURA-05.2-T1-S2",
+                  "title": "Evaluate each transformation with held-out seeds and matched data budget"
+                }
+              ]
+            },
+            {
+              "id": "AURA-05.2-T2",
+              "title": "Separate observation from oracle state",
+              "subtasks": [
+                {
+                  "id": "AURA-05.2-T2-S1",
+                  "title": "Restrict training features to camera/allowed sensor channels"
+                },
+                {
+                  "id": "AURA-05.2-T2-S2",
+                  "title": "Test that hidden grid coordinates are unavailable to learned policy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-05.3",
+          "title": "Cross-task transfer",
+          "tasks": [
+            {
+              "id": "AURA-05.3-T1",
+              "title": "Measure frozen encoder reuse",
+              "subtasks": [
+                {
+                  "id": "AURA-05.3-T1-S1",
+                  "title": "Transfer representations to unseen task mechanics without encoder retraining"
+                },
+                {
+                  "id": "AURA-05.3-T1-S2",
+                  "title": "Compare against fresh random and pretrained-on-source baselines"
+                }
+              ]
+            },
+            {
+              "id": "AURA-05.3-T2",
+              "title": "Document limits and uncertainty",
+              "subtasks": [
+                {
+                  "id": "AURA-05.3-T2-S1",
+                  "title": "Bootstrap performance by held-out environment cluster"
+                },
+                {
+                  "id": "AURA-05.3-T2-S2",
+                  "title": "Record task families where latent transfer does not improve performance"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "Hierarchical world model",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "05",
+        "07",
+        "19",
+        "23"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-06.1",
+          "title": "Temporal and multiscale predictions",
+          "tasks": [
+            {
+              "id": "AURA-06.1-T1",
+              "title": "Extend horizons safely",
+              "subtasks": [
+                {
+                  "id": "AURA-06.1-T1-S1",
+                  "title": "Train and test 1/2/4/8-step action-conditioned targets"
+                },
+                {
+                  "id": "AURA-06.1-T1-S2",
+                  "title": "Compare rollout accuracy, drift and equal-update baselines across seeds"
+                }
+              ]
+            },
+            {
+              "id": "AURA-06.1-T2",
+              "title": "Validate scale hierarchy",
+              "subtasks": [
+                {
+                  "id": "AURA-06.1-T2-S1",
+                  "title": "Connect coarse dynamics and fine visual residual heads"
+                },
+                {
+                  "id": "AURA-06.1-T2-S2",
+                  "title": "Ablate each hierarchy level on held-out layouts and dynamics"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-06.2",
+          "title": "State and uncertainty fidelity",
+          "tasks": [
+            {
+              "id": "AURA-06.2-T1",
+              "title": "Improve predictive calibration",
+              "subtasks": [
+                {
+                  "id": "AURA-06.2-T1-S1",
+                  "title": "Calibrate ensemble disagreement versus actual per-horizon errors"
+                },
+                {
+                  "id": "AURA-06.2-T1-S2",
+                  "title": "Detect nonstationary action effects and issue uncertainty flags"
+                }
+              ]
+            },
+            {
+              "id": "AURA-06.2-T2",
+              "title": "Preserve checkpoint compatibility",
+              "subtasks": [
+                {
+                  "id": "AURA-06.2-T2-S1",
+                  "title": "Test v1/v2/v3 checkpoint upgrades and corrupted payload rejection"
+                },
+                {
+                  "id": "AURA-06.2-T2-S2",
+                  "title": "Roundtrip model, optimizer, RNG and dynamics-schema state after restart"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-06.3",
+          "title": "Transfer and operational usefulness",
+          "tasks": [
+            {
+              "id": "AURA-06.3-T1",
+              "title": "Evaluate changed movement",
+              "subtasks": [
+                {
+                  "id": "AURA-06.3-T1-S1",
+                  "title": "Train a dynamics model on one action mapping and adapt on a held-out mapping"
+                },
+                {
+                  "id": "AURA-06.3-T1-S2",
+                  "title": "Compare adaptation cost with fixed-map and oracle-map controls"
+                }
+              ]
+            },
+            {
+              "id": "AURA-06.3-T2",
+              "title": "Prove planning benefit",
+              "subtasks": [
+                {
+                  "id": "AURA-06.3-T2-S1",
+                  "title": "Feed learned rollouts into a bounded planner without privileged state"
+                },
+                {
+                  "id": "AURA-06.3-T2-S2",
+                  "title": "Measure goal successes and compute relative to model-free/fixed heuristics"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "Uncertainty",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "06",
+        "19",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-07.1",
+          "title": "Types of uncertainty",
+          "tasks": [
+            {
+              "id": "AURA-07.1-T1",
+              "title": "Separate epistemic from observation noise",
+              "subtasks": [
+                {
+                  "id": "AURA-07.1-T1-S1",
+                  "title": "Estimate ensemble variance independently of pixel corruption"
+                },
+                {
+                  "id": "AURA-07.1-T1-S2",
+                  "title": "Verify uncontrollable-TV noise is not mistaken for learnable novelty"
+                }
+              ]
+            },
+            {
+              "id": "AURA-07.1-T2",
+              "title": "Reproduce conditional-risk local gate",
+              "subtasks": [
+                {
+                  "id": "AURA-07.1-T2-S1",
+                  "title": "Replay nominal and shifted transition regimes"
+                },
+                {
+                  "id": "AURA-07.1-T2-S2",
+                  "title": "Validate frozen risk limits and false-alert rates"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-07.2",
+          "title": "Calibration and decision integration",
+          "tasks": [
+            {
+              "id": "AURA-07.2-T1",
+              "title": "Assess probability calibration",
+              "subtasks": [
+                {
+                  "id": "AURA-07.2-T1-S1",
+                  "title": "Build reliability curves, Brier scores and coverage by task family"
+                },
+                {
+                  "id": "AURA-07.2-T1-S2",
+                  "title": "Stratify error by rare transitions and nonstationarity"
+                }
+              ]
+            },
+            {
+              "id": "AURA-07.2-T2",
+              "title": "Integrate conservative action selection",
+              "subtasks": [
+                {
+                  "id": "AURA-07.2-T2-S1",
+                  "title": "Stop/recalibrate when state uncertainty exceeds a preregistered limit"
+                },
+                {
+                  "id": "AURA-07.2-T2-S2",
+                  "title": "Measure avoided errors and extra action costs against ungated controls"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-07.3",
+          "title": "Out-of-distribution monitoring",
+          "tasks": [
+            {
+              "id": "AURA-07.3-T1",
+              "title": "Challenge unknown dynamics",
+              "subtasks": [
+                {
+                  "id": "AURA-07.3-T1-S1",
+                  "title": "Inject altered controls, occluded keys and hidden stochastic switches"
+                },
+                {
+                  "id": "AURA-07.3-T1-S2",
+                  "title": "Record whether system detects uncertainty before commitment"
+                }
+              ]
+            },
+            {
+              "id": "AURA-07.3-T2",
+              "title": "Quantify abstention costs",
+              "subtasks": [
+                {
+                  "id": "AURA-07.3-T2-S1",
+                  "title": "Report abstention frequency and post-abstention recovery outcomes"
+                },
+                {
+                  "id": "AURA-07.3-T2-S2",
+                  "title": "Retain false positives and false negatives in the provenance ledger"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": "Curiosity",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "06",
+        "07",
+        "12",
+        "19",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-08.1",
+          "title": "Intrinsic learning objectives",
+          "tasks": [
+            {
+              "id": "AURA-08.1-T1",
+              "title": "Distinguish useful information gain",
+              "subtasks": [
+                {
+                  "id": "AURA-08.1-T1-S1",
+                  "title": "Optimize validated learning progress rather than raw sensory novelty alone"
+                },
+                {
+                  "id": "AURA-08.1-T1-S2",
+                  "title": "Ablate disagreement, novelty, noise penalty and information cost"
+                }
+              ]
+            },
+            {
+              "id": "AURA-08.1-T2",
+              "title": "Demonstrate non-oracle goal selection",
+              "subtasks": [
+                {
+                  "id": "AURA-08.1-T2-S1",
+                  "title": "Form investigative goals from observations without reading map metadata"
+                },
+                {
+                  "id": "AURA-08.1-T2-S2",
+                  "title": "Compare success against random/fixed exploration with equal actions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-08.2",
+          "title": "Localization and robust goal acquisition",
+          "tasks": [
+            {
+              "id": "AURA-08.2-T1",
+              "title": "Diagnose camera-motion failure",
+              "subtasks": [
+                {
+                  "id": "AURA-08.2-T1-S1",
+                  "title": "Replay the v117/v131 failures at 13x13/15x15 and 15–20% noise"
+                },
+                {
+                  "id": "AURA-08.2-T1-S2",
+                  "title": "Partition failures into ambiguous calibration, movement mismatch and missing landmarks"
+                }
+              ]
+            },
+            {
+              "id": "AURA-08.2-T2",
+              "title": "Improve uncertainty-aware movement inference",
+              "subtasks": [
+                {
+                  "id": "AURA-08.2-T2-S1",
+                  "title": "Learn action effects from observations with confidence and rollback"
+                },
+                {
+                  "id": "AURA-08.2-T2-S2",
+                  "title": "Check no evaluator-only position enters policy updates or action choice"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-08.3",
+          "title": "Generalization and ablations",
+          "tasks": [
+            {
+              "id": "AURA-08.3-T1",
+              "title": "Test truly unseen environment families",
+              "subtasks": [
+                {
+                  "id": "AURA-08.3-T1-S1",
+                  "title": "Freeze policy before sealed new sizes, rules, corruptions and movement transformations"
+                },
+                {
+                  "id": "AURA-08.3-T1-S2",
+                  "title": "Include small, large, rare and adversarial conditions without cherry-picking"
+                }
+              ]
+            },
+            {
+              "id": "AURA-08.3-T2",
+              "title": "Compare navigation controllers fairly",
+              "subtasks": [
+                {
+                  "id": "AURA-08.3-T2-S1",
+                  "title": "Run persistent, composed, learned and random controllers on identical episodes"
+                },
+                {
+                  "id": "AURA-08.3-T2-S2",
+                  "title": "Report paired discordances, clustered uncertainty and all negative outcomes"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-08.4",
+          "title": "Learning efficiency and external replication",
+          "tasks": [
+            {
+              "id": "AURA-08.4-T1",
+              "title": "Quantify cost of autonomous exploration",
+              "subtasks": [
+                {
+                  "id": "AURA-08.4-T1-S1",
+                  "title": "Track actions, wall-time, training updates, compute and retained skills per success"
+                },
+                {
+                  "id": "AURA-08.4-T1-S2",
+                  "title": "Demonstrate improvement under matched total learning budget"
+                }
+              ]
+            },
+            {
+              "id": "AURA-08.4-T2",
+              "title": "Request blind external replication",
+              "subtasks": [
+                {
+                  "id": "AURA-08.4-T2-S1",
+                  "title": "Supply immutable source and evaluator interface to independent assessor"
+                },
+                {
+                  "id": "AURA-08.4-T2-S2",
+                  "title": "Require signed complete raw episode receipts before Section 08 promotion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": "Hypothesis and causal discovery",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "10",
+        "19",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-09.1",
+          "title": "Hypothesis lifecycle",
+          "tasks": [
+            {
+              "id": "AURA-09.1-T1",
+              "title": "Replay established intervention studies",
+              "subtasks": [
+                {
+                  "id": "AURA-09.1-T1-S1",
+                  "title": "Verify stable, changing and masked camera cases with exact traces"
+                },
+                {
+                  "id": "AURA-09.1-T1-S2",
+                  "title": "Audit rejected and abstained hypotheses as well as accepted ones"
+                }
+              ]
+            },
+            {
+              "id": "AURA-09.1-T2",
+              "title": "Expand causal hypothesis language",
+              "subtasks": [
+                {
+                  "id": "AURA-09.1-T2-S1",
+                  "title": "Add bounded typed variables for doors, switches and movement interventions"
+                },
+                {
+                  "id": "AURA-09.1-T2-S2",
+                  "title": "Forbid post-hoc oracle access or dynamically invented unmeasured factors"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-09.2",
+          "title": "Experiment design",
+          "tasks": [
+            {
+              "id": "AURA-09.2-T1",
+              "title": "Compare interventions against observation",
+              "subtasks": [
+                {
+                  "id": "AURA-09.2-T1-S1",
+                  "title": "Randomize action assignments while holding initial conditions fixed"
+                },
+                {
+                  "id": "AURA-09.2-T1-S2",
+                  "title": "Quantify confounding, budget and evidence gain per intervention"
+                }
+              ]
+            },
+            {
+              "id": "AURA-09.2-T2",
+              "title": "Add change-point hypotheses",
+              "subtasks": [
+                {
+                  "id": "AURA-09.2-T2-S1",
+                  "title": "Test rule switches and misleading observational correlations"
+                },
+                {
+                  "id": "AURA-09.2-T2-S2",
+                  "title": "Require alternate-hypothesis falsification or explicit abstention"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-09.3",
+          "title": "Cross-domain causality",
+          "tasks": [
+            {
+              "id": "AURA-09.3-T1",
+              "title": "Transfer procedure to unfamiliar tasks",
+              "subtasks": [
+                {
+                  "id": "AURA-09.3-T1-S1",
+                  "title": "Reuse experiment planner in non-door mechanisms"
+                },
+                {
+                  "id": "AURA-09.3-T1-S2",
+                  "title": "Benchmark causal identification against random experimentation"
+                }
+              ]
+            },
+            {
+              "id": "AURA-09.3-T2",
+              "title": "Verify counterfactual limits",
+              "subtasks": [
+                {
+                  "id": "AURA-09.3-T2-S1",
+                  "title": "Label simulated counterfactuals separately from observed outcomes"
+                },
+                {
+                  "id": "AURA-09.3-T2-S2",
+                  "title": "Require actual follow-up trials before asserting a causal discovery"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Evidence & memory",
+      "acceptance_status": "Verified locally",
+      "priority": "P2",
+      "linked_sections": [
+        "21",
+        "29"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-10.1",
+          "title": "Ledger integrity",
+          "tasks": [
+            {
+              "id": "AURA-10.1-T1",
+              "title": "Reproduce anchored-evidence gate",
+              "subtasks": [
+                {
+                  "id": "AURA-10.1-T1-S1",
+                  "title": "Validate append-only hash chain, external pinned prefix and tamper rejection"
+                },
+                {
+                  "id": "AURA-10.1-T1-S2",
+                  "title": "Check copied and truncated ledgers fail verified-prefix checks"
+                }
+              ]
+            },
+            {
+              "id": "AURA-10.1-T2",
+              "title": "Differentiate source categories",
+              "subtasks": [
+                {
+                  "id": "AURA-10.1-T2-S1",
+                  "title": "Record observed, imagined, external and derived evidence with provenance"
+                },
+                {
+                  "id": "AURA-10.1-T2-S2",
+                  "title": "Reject cross-category writes that obscure origin"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-10.2",
+          "title": "Episodic/semantic/procedural retrieval",
+          "tasks": [
+            {
+              "id": "AURA-10.2-T1",
+              "title": "Validate three memory types",
+              "subtasks": [
+                {
+                  "id": "AURA-10.2-T1-S1",
+                  "title": "Store an episode, induced concept and learned skill with version links"
+                },
+                {
+                  "id": "AURA-10.2-T1-S2",
+                  "title": "Reload after restart and check causal lineage and retrieval precision"
+                }
+              ]
+            },
+            {
+              "id": "AURA-10.2-T2",
+              "title": "Test contradiction management",
+              "subtasks": [
+                {
+                  "id": "AURA-10.2-T2-S1",
+                  "title": "Inject inconsistent evidence about action outcomes"
+                },
+                {
+                  "id": "AURA-10.2-T2-S2",
+                  "title": "Ensure revisions retain old evidence and provide conflict-aware retrieval"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-10.3",
+          "title": "Capacity and audit",
+          "tasks": [
+            {
+              "id": "AURA-10.3-T1",
+              "title": "Bound storage growth",
+              "subtasks": [
+                {
+                  "id": "AURA-10.3-T1-S1",
+                  "title": "Measure retrieval latency and memory size under long runs"
+                },
+                {
+                  "id": "AURA-10.3-T1-S2",
+                  "title": "Test archival/compaction without changing anchored evidence"
+                }
+              ]
+            },
+            {
+              "id": "AURA-10.3-T2",
+              "title": "Add export/replay tooling",
+              "subtasks": [
+                {
+                  "id": "AURA-10.3-T2-S1",
+                  "title": "Export evidence in stable machine-readable schema"
+                },
+                {
+                  "id": "AURA-10.3-T2-S2",
+                  "title": "Verify independent reader can recompute digests and reconstruct decisions"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Concept discovery",
+      "acceptance_status": "Verified locally",
+      "priority": "P2",
+      "linked_sections": [
+        "05",
+        "10",
+        "14"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-11.1",
+          "title": "Latent concept construction",
+          "tasks": [
+            {
+              "id": "AURA-11.1-T1",
+              "title": "Reproduce create/split/merge/retire gates",
+              "subtasks": [
+                {
+                  "id": "AURA-11.1-T1-S1",
+                  "title": "Rerun the five local shifted-observation experiments"
+                },
+                {
+                  "id": "AURA-11.1-T1-S2",
+                  "title": "Preserve concept lineage, state snapshot and rejected edits"
+                }
+              ]
+            },
+            {
+              "id": "AURA-11.1-T2",
+              "title": "Eliminate shortcut labels",
+              "subtasks": [
+                {
+                  "id": "AURA-11.1-T2-S1",
+                  "title": "Generate candidate concepts from observed embeddings alone"
+                },
+                {
+                  "id": "AURA-11.1-T2-S2",
+                  "title": "Measure dependence on hidden semantic labels or task metadata"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-11.2",
+          "title": "Concept quality",
+          "tasks": [
+            {
+              "id": "AURA-11.2-T1",
+              "title": "Compare against simple alternatives",
+              "subtasks": [
+                {
+                  "id": "AURA-11.2-T1-S1",
+                  "title": "Match compute for k-means-like prototypes and fixed random partitions"
+                },
+                {
+                  "id": "AURA-11.2-T1-S2",
+                  "title": "Verify fresh held-out predictive gain with intervals"
+                }
+              ]
+            },
+            {
+              "id": "AURA-11.2-T2",
+              "title": "Audit false concept drift",
+              "subtasks": [
+                {
+                  "id": "AURA-11.2-T2-S1",
+                  "title": "Introduce nuisance perturbations and replay conflicts"
+                },
+                {
+                  "id": "AURA-11.2-T2-S2",
+                  "title": "Distinguish useful refinement from unstable renaming"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-11.3",
+          "title": "Transfer and memory integration",
+          "tasks": [
+            {
+              "id": "AURA-11.3-T1",
+              "title": "Export concepts to skill and hypothesis users",
+              "subtasks": [
+                {
+                  "id": "AURA-11.3-T1-S1",
+                  "title": "Track where learned concepts change downstream decisions"
+                },
+                {
+                  "id": "AURA-11.3-T1-S2",
+                  "title": "Test correct version lookup after concept retirement"
+                }
+              ]
+            },
+            {
+              "id": "AURA-11.3-T2",
+              "title": "Evaluate cross-task concepts",
+              "subtasks": [
+                {
+                  "id": "AURA-11.3-T2-S1",
+                  "title": "Freeze concepts before new task family evaluations"
+                },
+                {
+                  "id": "AURA-11.3-T2-S2",
+                  "title": "Measure predictive and sample-efficiency effects versus no-concept controls"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Skills",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "08",
+        "10",
+        "11",
+        "19"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-12.1",
+          "title": "Skill discovery and grounding",
+          "tasks": [
+            {
+              "id": "AURA-12.1-T1",
+              "title": "Reproduce learned doorway skill",
+              "subtasks": [
+                {
+                  "id": "AURA-12.1-T1-S1",
+                  "title": "Replay shifted-layout and missing-key trials"
+                },
+                {
+                  "id": "AURA-12.1-T1-S2",
+                  "title": "Verify success, abort behavior and withdrawal without oracle controls"
+                }
+              ]
+            },
+            {
+              "id": "AURA-12.1-T2",
+              "title": "Identify reusable primitives",
+              "subtasks": [
+                {
+                  "id": "AURA-12.1-T2-S1",
+                  "title": "Mine demonstrated options with initiation and termination tests"
+                },
+                {
+                  "id": "AURA-12.1-T2-S2",
+                  "title": "Test that initiation criteria are sensory and not evaluator-derived"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-12.2",
+          "title": "Composition and safety",
+          "tasks": [
+            {
+              "id": "AURA-12.2-T1",
+              "title": "Validate option composition",
+              "subtasks": [
+                {
+                  "id": "AURA-12.2-T1-S1",
+                  "title": "Compose learned primitives for key-door-goal sequences"
+                },
+                {
+                  "id": "AURA-12.2-T1-S2",
+                  "title": "Require fresh observed trials, not concatenation-only assertions"
+                }
+              ]
+            },
+            {
+              "id": "AURA-12.2-T2",
+              "title": "Detect failed skills",
+              "subtasks": [
+                {
+                  "id": "AURA-12.2-T2-S1",
+                  "title": "Inject blocked passages, changed movement and stale landmarks"
+                },
+                {
+                  "id": "AURA-12.2-T2-S2",
+                  "title": "Ensure safe fallback, replan and negative skill revisions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-12.3",
+          "title": "Transfer and efficiency",
+          "tasks": [
+            {
+              "id": "AURA-12.3-T1",
+              "title": "Evaluate unfamiliar contexts",
+              "subtasks": [
+                {
+                  "id": "AURA-12.3-T1-S1",
+                  "title": "Freeze skill library before held-out layouts and tasks"
+                },
+                {
+                  "id": "AURA-12.3-T1-S2",
+                  "title": "Compare action cost and success versus flat policy"
+                }
+              ]
+            },
+            {
+              "id": "AURA-12.3-T2",
+              "title": "Track skill economics",
+              "subtasks": [
+                {
+                  "id": "AURA-12.3-T2-S1",
+                  "title": "Record acquisition cost, execution overhead and reuse savings"
+                },
+                {
+                  "id": "AURA-12.3-T2-S2",
+                  "title": "Retire skills with repeated negative marginal value"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Curriculum",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "08",
+        "12",
+        "15",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-13.1",
+          "title": "Task generation",
+          "tasks": [
+            {
+              "id": "AURA-13.1-T1",
+              "title": "Build solvable learning progressions",
+              "subtasks": [
+                {
+                  "id": "AURA-13.1-T1-S1",
+                  "title": "Generate tasks with graded occlusion, length and rule complexity"
+                },
+                {
+                  "id": "AURA-13.1-T1-S2",
+                  "title": "Verify solvability witnesses do not leak to learner"
+                }
+              ]
+            },
+            {
+              "id": "AURA-13.1-T2",
+              "title": "Audit challenge distribution",
+              "subtasks": [
+                {
+                  "id": "AURA-13.1-T2-S1",
+                  "title": "Cover easy, intermediate and adversarial tasks per seed"
+                },
+                {
+                  "id": "AURA-13.1-T2-S2",
+                  "title": "Prevent curriculum from avoiding hard failures indefinitely"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-13.2",
+          "title": "Scheduling policies",
+          "tasks": [
+            {
+              "id": "AURA-13.2-T1",
+              "title": "Reproduce adaptive scheduler result",
+              "subtasks": [
+                {
+                  "id": "AURA-13.2-T1-S1",
+                  "title": "Rerun 20-seed transfer against fixed and random curricula"
+                },
+                {
+                  "id": "AURA-13.2-T1-S2",
+                  "title": "Preserve documented negative neural-study finding separately"
+                }
+              ]
+            },
+            {
+              "id": "AURA-13.2-T2",
+              "title": "Compare under equal budgets",
+              "subtasks": [
+                {
+                  "id": "AURA-13.2-T2-S1",
+                  "title": "Normalize episodes, training updates and evaluator queries"
+                },
+                {
+                  "id": "AURA-13.2-T2-S2",
+                  "title": "Report uncertainty and catastrophic transfer regressions"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-13.3",
+          "title": "Long-horizon learning",
+          "tasks": [
+            {
+              "id": "AURA-13.3-T1",
+              "title": "Link curriculum to mastery estimate",
+              "subtasks": [
+                {
+                  "id": "AURA-13.3-T1-S1",
+                  "title": "Revisit tasks after apparent progress to test retained competence"
+                },
+                {
+                  "id": "AURA-13.3-T1-S2",
+                  "title": "Schedule corrective examples after detected forgetting"
+                }
+              ]
+            },
+            {
+              "id": "AURA-13.3-T2",
+              "title": "Test transfer scheduling",
+              "subtasks": [
+                {
+                  "id": "AURA-13.3-T2-S1",
+                  "title": "Train on procedural source family and test unfamiliar target family"
+                },
+                {
+                  "id": "AURA-13.3-T2-S2",
+                  "title": "Establish gains beyond task memorization under frozen schedule"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Continual learning",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "05",
+        "10",
+        "23"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-14.1",
+          "title": "Forgetting and rehearsal",
+          "tasks": [
+            {
+              "id": "AURA-14.1-T1",
+              "title": "Reproduce controlled rule-switch gate",
+              "subtasks": [
+                {
+                  "id": "AURA-14.1-T1-S1",
+                  "title": "Record old-task MSE before/after and new-task adaptation"
+                },
+                {
+                  "id": "AURA-14.1-T1-S2",
+                  "title": "Compare replay, no-replay and equal-memory baselines"
+                }
+              ]
+            },
+            {
+              "id": "AURA-14.1-T2",
+              "title": "Manage replay quality",
+              "subtasks": [
+                {
+                  "id": "AURA-14.1-T2-S1",
+                  "title": "Balance recent vs representative examples and detect stale labels"
+                },
+                {
+                  "id": "AURA-14.1-T2-S2",
+                  "title": "Preserve provenance when entries are evicted or sampled"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-14.2",
+          "title": "Distribution shifts",
+          "tasks": [
+            {
+              "id": "AURA-14.2-T1",
+              "title": "Stress multiple switches",
+              "subtasks": [
+                {
+                  "id": "AURA-14.2-T1-S1",
+                  "title": "Alternate action rules and observation channels over long sequences"
+                },
+                {
+                  "id": "AURA-14.2-T1-S2",
+                  "title": "Quantify recovery time and accumulated forgetting"
+                }
+              ]
+            },
+            {
+              "id": "AURA-14.2-T2",
+              "title": "Validate transfer vs interference",
+              "subtasks": [
+                {
+                  "id": "AURA-14.2-T2-S1",
+                  "title": "Measure new-task and old-task metrics on identical saved banks"
+                },
+                {
+                  "id": "AURA-14.2-T2-S2",
+                  "title": "Report when new learning improves one metric but damages another"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-14.3",
+          "title": "Resource efficiency",
+          "tasks": [
+            {
+              "id": "AURA-14.3-T1",
+              "title": "Compare memory budgets",
+              "subtasks": [
+                {
+                  "id": "AURA-14.3-T1-S1",
+                  "title": "Sweep replay buffer capacities with fixed compute"
+                },
+                {
+                  "id": "AURA-14.3-T1-S2",
+                  "title": "Plot stability–memory tradeoff including wall-time and energy proxy"
+                }
+              ]
+            },
+            {
+              "id": "AURA-14.3-T2",
+              "title": "Check stable reinitialization",
+              "subtasks": [
+                {
+                  "id": "AURA-14.3-T2-S1",
+                  "title": "Restart learner during nonstationary training"
+                },
+                {
+                  "id": "AURA-14.3-T2-S2",
+                  "title": "Verify optimizer, replay and curriculum state resume without data loss"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Meta-learning",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "18",
+        "23",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-15.1",
+          "title": "Meta-controller actions",
+          "tasks": [
+            {
+              "id": "AURA-15.1-T1",
+              "title": "Reproduce scheduler improvement",
+              "subtasks": [
+                {
+                  "id": "AURA-15.1-T1-S1",
+                  "title": "Re-run 32-seed equal-update optimization comparison"
+                },
+                {
+                  "id": "AURA-15.1-T1-S2",
+                  "title": "Audit source and target split leakage"
+                }
+              ]
+            },
+            {
+              "id": "AURA-15.1-T2",
+              "title": "Expand strategy choices",
+              "subtasks": [
+                {
+                  "id": "AURA-15.1-T2-S1",
+                  "title": "Expose bounded choices of exploration, replay, batch size and optimizer"
+                },
+                {
+                  "id": "AURA-15.1-T2-S2",
+                  "title": "Enforce constraints and record which choice affected each update"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-15.2",
+          "title": "Meta-objective and credit assignment",
+          "tasks": [
+            {
+              "id": "AURA-15.2-T1",
+              "title": "Learn strategy utility from measured outcomes",
+              "subtasks": [
+                {
+                  "id": "AURA-15.2-T1-S1",
+                  "title": "Attribute held-out improvement to policy choices with conservative baselines"
+                },
+                {
+                  "id": "AURA-15.2-T1-S2",
+                  "title": "Account for interactions and extra development-evaluation overhead"
+                }
+              ]
+            },
+            {
+              "id": "AURA-15.2-T2",
+              "title": "Add nonstationary adaptation",
+              "subtasks": [
+                {
+                  "id": "AURA-15.2-T2-S1",
+                  "title": "Switch preferred strategy after validated environment change"
+                },
+                {
+                  "id": "AURA-15.2-T2-S2",
+                  "title": "Measure adaptation lag versus fixed policy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-15.3",
+          "title": "Robust meta-transfer",
+          "tasks": [
+            {
+              "id": "AURA-15.3-T1",
+              "title": "Freeze meta-policy for new tasks",
+              "subtasks": [
+                {
+                  "id": "AURA-15.3-T1-S1",
+                  "title": "Train scheduler on source tasks and evaluate on different dynamics"
+                },
+                {
+                  "id": "AURA-15.3-T1-S2",
+                  "title": "Compare budget-matched UCB, random and fixed schedules"
+                }
+              ]
+            },
+            {
+              "id": "AURA-15.3-T2",
+              "title": "Bound meta-learning overfit",
+              "subtasks": [
+                {
+                  "id": "AURA-15.3-T2-S1",
+                  "title": "Limit evaluation queries and preregister the split"
+                },
+                {
+                  "id": "AURA-15.3-T2-S2",
+                  "title": "Reject strategies selected solely by repeated holdout peeking"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "Recursive self-improvement",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "17",
+        "22",
+        "25"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-16.1",
+          "title": "Bounded proposals",
+          "tasks": [
+            {
+              "id": "AURA-16.1-T1",
+              "title": "Enumerate typed mutation operators",
+              "subtasks": [
+                {
+                  "id": "AURA-16.1-T1-S1",
+                  "title": "Allow model, policy, curriculum and hyperparameter modifications through validated schemas"
+                },
+                {
+                  "id": "AURA-16.1-T1-S2",
+                  "title": "Refuse arbitrary code paths, verifier files and threshold edits"
+                }
+              ]
+            },
+            {
+              "id": "AURA-16.1-T2",
+              "title": "Version candidate lineage",
+              "subtasks": [
+                {
+                  "id": "AURA-16.1-T2-S1",
+                  "title": "Save parent hash, diff, dependency lock and proposal rationale"
+                },
+                {
+                  "id": "AURA-16.1-T2-S2",
+                  "title": "Verify failure, rollback and duplicate-detection paths"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-16.2",
+          "title": "Controlled evaluation",
+          "tasks": [
+            {
+              "id": "AURA-16.2-T1",
+              "title": "Evaluate one candidate against its parent",
+              "subtasks": [
+                {
+                  "id": "AURA-16.2-T1-S1",
+                  "title": "Run paired seeds with equal interactions and total compute"
+                },
+                {
+                  "id": "AURA-16.2-T1-S2",
+                  "title": "Record confidence intervals, worst-case regressions and costs"
+                }
+              ]
+            },
+            {
+              "id": "AURA-16.2-T2",
+              "title": "Protect against selection bias",
+              "subtasks": [
+                {
+                  "id": "AURA-16.2-T2-S1",
+                  "title": "Segregate development, selection and untouched confirmation banks"
+                },
+                {
+                  "id": "AURA-16.2-T2-S2",
+                  "title": "Apply repeated-look correction or report exploratory confidence only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-16.3",
+          "title": "Closed-loop continuation",
+          "tasks": [
+            {
+              "id": "AURA-16.3-T1",
+              "title": "Integrate proposal loop with real learner",
+              "subtasks": [
+                {
+                  "id": "AURA-16.3-T1-S1",
+                  "title": "Trigger proposal from measured training deficiency and policy telemetry"
+                },
+                {
+                  "id": "AURA-16.3-T1-S2",
+                  "title": "Execute and evaluate in isolation, then choose keep/reject explicitly"
+                }
+              ]
+            },
+            {
+              "id": "AURA-16.3-T2",
+              "title": "Demonstrate successive improvement",
+              "subtasks": [
+                {
+                  "id": "AURA-16.3-T2-S1",
+                  "title": "Produce two consecutive accepted generations under frozen criteria"
+                },
+                {
+                  "id": "AURA-16.3-T2-S2",
+                  "title": "Confirm neither depends on score leakage or changed verifier behavior"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-16.4",
+          "title": "Safety and reversibility",
+          "tasks": [
+            {
+              "id": "AURA-16.4-T1",
+              "title": "Roll back failed descendants",
+              "subtasks": [
+                {
+                  "id": "AURA-16.4-T1-S1",
+                  "title": "Restore full model, optimizer, replay and lineage state after a rejection"
+                },
+                {
+                  "id": "AURA-16.4-T1-S2",
+                  "title": "Verify replay consistency and no partial promotion artifact"
+                }
+              ]
+            },
+            {
+              "id": "AURA-16.4-T2",
+              "title": "Compare evolutionary alternatives",
+              "subtasks": [
+                {
+                  "id": "AURA-16.4-T2-S1",
+                  "title": "Benchmark random search, fixed schedule and informed proposal policies"
+                },
+                {
+                  "id": "AURA-16.4-T2-S2",
+                  "title": "Retain costs of failed proposals and divergent search paths"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "title": "Independent verifier",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "02",
+        "21",
+        "25",
+        "28"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-17.1",
+          "title": "Trust boundaries",
+          "tasks": [
+            {
+              "id": "AURA-17.1-T1",
+              "title": "Map all candidate influence channels",
+              "subtasks": [
+                {
+                  "id": "AURA-17.1-T1-S1",
+                  "title": "Enumerate filesystem, environment variables, imports, IPC, shared memory and network"
+                },
+                {
+                  "id": "AURA-17.1-T1-S2",
+                  "title": "Define fail-closed trust model and prohibited evaluator writes"
+                }
+              ]
+            },
+            {
+              "id": "AURA-17.1-T2",
+              "title": "Verify isolated worker startup",
+              "subtasks": [
+                {
+                  "id": "AURA-17.1-T2-S1",
+                  "title": "Execute actual evaluator under separate process/container credentials"
+                },
+                {
+                  "id": "AURA-17.1-T2-S2",
+                  "title": "Assert immutable bind mounts and denial of host-level secret access"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-17.2",
+          "title": "Sandbox and resource enforcement",
+          "tasks": [
+            {
+              "id": "AURA-17.2-T1",
+              "title": "Finish namespace/OS isolation integration",
+              "subtasks": [
+                {
+                  "id": "AURA-17.2-T1-S1",
+                  "title": "Link trusted PID/user/mount/seccomp probes to production worker"
+                },
+                {
+                  "id": "AURA-17.2-T1-S2",
+                  "title": "Run kernel-specific probes and document unavailable protections"
+                }
+              ]
+            },
+            {
+              "id": "AURA-17.2-T2",
+              "title": "Exhaust adversarial mutation attempts",
+              "subtasks": [
+                {
+                  "id": "AURA-17.2-T2-S1",
+                  "title": "Inject symlink, path traversal, malformed JSON, inherited descriptor and syscall bypass inputs"
+                },
+                {
+                  "id": "AURA-17.2-T2-S2",
+                  "title": "Prove no protected metadata or code was modified"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-17.3",
+          "title": "Independent evaluation protocol",
+          "tasks": [
+            {
+              "id": "AURA-17.3-T1",
+              "title": "Require external evaluator custody",
+              "subtasks": [
+                {
+                  "id": "AURA-17.3-T1-S1",
+                  "title": "Identify independent assessor with own sealed tasks and signing key"
+                },
+                {
+                  "id": "AURA-17.3-T1-S2",
+                  "title": "Verify key fingerprint and affiliation through an out-of-band channel"
+                }
+              ]
+            },
+            {
+              "id": "AURA-17.3-T2",
+              "title": "Validate signed raw evidence",
+              "subtasks": [
+                {
+                  "id": "AURA-17.3-T2-S1",
+                  "title": "Check complete trial count, manifest hash, source commit and signature"
+                },
+                {
+                  "id": "AURA-17.3-T2-S2",
+                  "title": "Independently replay selected outcomes and inspect conflicting records"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-17.4",
+          "title": "Promotion integrity",
+          "tasks": [
+            {
+              "id": "AURA-17.4-T1",
+              "title": "Verify immutable acceptance policy",
+              "subtasks": [
+                {
+                  "id": "AURA-17.4-T1-S1",
+                  "title": "Snapshot comparison thresholds and minimum sample sizes before candidate search"
+                },
+                {
+                  "id": "AURA-17.4-T1-S2",
+                  "title": "Deny policy changes and repeated peeking without statistical accounting"
+                }
+              ]
+            },
+            {
+              "id": "AURA-17.4-T2",
+              "title": "Audit rejection paths",
+              "subtasks": [
+                {
+                  "id": "AURA-17.4-T2-S1",
+                  "title": "Test tiny samples, negative gains, nonfinite evidence and corrupt ledgers"
+                },
+                {
+                  "id": "AURA-17.4-T2-S2",
+                  "title": "Ensure every rejected candidate leaves a durable non-promoted decision"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "title": "Value of computation",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "15",
+        "23",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-18.1",
+          "title": "Benefit and cost measurement",
+          "tasks": [
+            {
+              "id": "AURA-18.1-T1",
+              "title": "Reproduce batch-allocation results",
+              "subtasks": [
+                {
+                  "id": "AURA-18.1-T1-S1",
+                  "title": "Re-run 32 controlled seeds and same-sample-budget comparisons"
+                },
+                {
+                  "id": "AURA-18.1-T1-S2",
+                  "title": "Record prediction gain, compute cost and discarded candidates"
+                }
+              ]
+            },
+            {
+              "id": "AURA-18.1-T2",
+              "title": "Define resource cost model",
+              "subtasks": [
+                {
+                  "id": "AURA-18.1-T2-S1",
+                  "title": "Track wall-time, FLOP proxy, memory and simulator interactions"
+                },
+                {
+                  "id": "AURA-18.1-T2-S2",
+                  "title": "Calibrate proxy against real CPU/GPU observations"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-18.2",
+          "title": "Decision policy",
+          "tasks": [
+            {
+              "id": "AURA-18.2-T1",
+              "title": "Compare compute allocations",
+              "subtasks": [
+                {
+                  "id": "AURA-18.2-T1-S1",
+                  "title": "Test small/frequent vs large/sparse update batches"
+                },
+                {
+                  "id": "AURA-18.2-T1-S2",
+                  "title": "Use fixed random, greedy and best-known static baselines"
+                }
+              ]
+            },
+            {
+              "id": "AURA-18.2-T2",
+              "title": "Bound evaluation overhead",
+              "subtasks": [
+                {
+                  "id": "AURA-18.2-T2-S1",
+                  "title": "Account for value-estimation and scheduler queries"
+                },
+                {
+                  "id": "AURA-18.2-T2-S2",
+                  "title": "Reject policies whose overhead exceeds measured learning benefit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-18.3",
+          "title": "Generalization and efficiency",
+          "tasks": [
+            {
+              "id": "AURA-18.3-T1",
+              "title": "Transfer compute policy",
+              "subtasks": [
+                {
+                  "id": "AURA-18.3-T1-S1",
+                  "title": "Freeze allocation rule before unfamiliar tasks and model sizes"
+                },
+                {
+                  "id": "AURA-18.3-T1-S2",
+                  "title": "Verify gains persist at matched total resource budgets"
+                }
+              ]
+            },
+            {
+              "id": "AURA-18.3-T2",
+              "title": "Analyze delayed outcomes",
+              "subtasks": [
+                {
+                  "id": "AURA-18.3-T2-S1",
+                  "title": "Track whether short-run gain harms later retention or transfer"
+                },
+                {
+                  "id": "AURA-18.3-T2-S2",
+                  "title": "Report confidence and high-cost outlier failures"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "title": "Simulation environment",
+      "acceptance_status": "Verified locally",
+      "priority": "P1",
+      "linked_sections": [
+        "03",
+        "21",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-19.1",
+          "title": "Environment correctness",
+          "tasks": [
+            {
+              "id": "AURA-19.1-T1",
+              "title": "Reproduce reachability witnesses",
+              "subtasks": [
+                {
+                  "id": "AURA-19.1-T1-S1",
+                  "title": "Replay all 90 disjoint-layout witnesses against environment dynamics"
+                },
+                {
+                  "id": "AURA-19.1-T1-S2",
+                  "title": "Verify reward, termination, truncation and key/door invariants"
+                }
+              ]
+            },
+            {
+              "id": "AURA-19.1-T2",
+              "title": "Complete official API validation",
+              "subtasks": [
+                {
+                  "id": "AURA-19.1-T2-S1",
+                  "title": "Run Gymnasium checker, gym.make/EnvSpec and render RNG tests"
+                },
+                {
+                  "id": "AURA-19.1-T2-S2",
+                  "title": "Confirm deterministic resets and correct observation/action spaces"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-19.2",
+          "title": "Procedural diversity",
+          "tasks": [
+            {
+              "id": "AURA-19.2-T1",
+              "title": "Generate novel solvable layouts",
+              "subtasks": [
+                {
+                  "id": "AURA-19.2-T1-S1",
+                  "title": "Vary size, wall geometry, occlusion, keys and door positions"
+                },
+                {
+                  "id": "AURA-19.2-T1-S2",
+                  "title": "Independently verify generated levels are reachable before scoring learners"
+                }
+              ]
+            },
+            {
+              "id": "AURA-19.2-T2",
+              "title": "Stress action semantics",
+              "subtasks": [
+                {
+                  "id": "AURA-19.2-T2-S1",
+                  "title": "Randomize movement permutation, switchable rules and hidden hazards"
+                },
+                {
+                  "id": "AURA-19.2-T2-S2",
+                  "title": "Ensure action effects require observation-based calibration"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-19.3",
+          "title": "Transfer and independence",
+          "tasks": [
+            {
+              "id": "AURA-19.3-T1",
+              "title": "Reproduce changed-action policy transfer",
+              "subtasks": [
+                {
+                  "id": "AURA-19.3-T1-S1",
+                  "title": "Verify 40/40 locally learned-calibration successes vs fixed-control failures"
+                },
+                {
+                  "id": "AURA-19.3-T1-S2",
+                  "title": "Repeat on concealed layouts under independent assessor control"
+                }
+              ]
+            },
+            {
+              "id": "AURA-19.3-T2",
+              "title": "Prevent environment oracle leakage",
+              "subtasks": [
+                {
+                  "id": "AURA-19.3-T2-S1",
+                  "title": "Run policy with only RGB, discrete actions and permitted rewards"
+                },
+                {
+                  "id": "AURA-19.3-T2-S2",
+                  "title": "Probe code and logs for direct access to map, hidden seeds and ground-truth state"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "title": "Repository structure",
+      "acceptance_status": "Verified locally",
+      "priority": "P2",
+      "linked_sections": [
+        "29"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-20.1",
+          "title": "Package and filesystem layout",
+          "tasks": [
+            {
+              "id": "AURA-20.1-T1",
+              "title": "Confirm required directories",
+              "subtasks": [
+                {
+                  "id": "AURA-20.1-T1-S1",
+                  "title": "Audit aura, protected_verifier, configs, scripts, tests and docs tree"
+                },
+                {
+                  "id": "AURA-20.1-T1-S2",
+                  "title": "Assert pip editable install and import paths in a fresh checkout"
+                }
+              ]
+            },
+            {
+              "id": "AURA-20.1-T2",
+              "title": "Define ownership boundaries",
+              "subtasks": [
+                {
+                  "id": "AURA-20.1-T2-S1",
+                  "title": "Mark verifier-owned and learner-owned paths"
+                },
+                {
+                  "id": "AURA-20.1-T2-S2",
+                  "title": "Restrict untrusted code from modifying protected or externally held assets"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-20.2",
+          "title": "Reproducible experiments",
+          "tasks": [
+            {
+              "id": "AURA-20.2-T1",
+              "title": "Standardize run directory schema",
+              "subtasks": [
+                {
+                  "id": "AURA-20.2-T1-S1",
+                  "title": "Use versioned config, metrics, trace, checkpoint and hash manifest"
+                },
+                {
+                  "id": "AURA-20.2-T1-S2",
+                  "title": "Validate all generated artifacts live outside source package and have run IDs"
+                }
+              ]
+            },
+            {
+              "id": "AURA-20.2-T2",
+              "title": "Minimize untracked dependencies",
+              "subtasks": [
+                {
+                  "id": "AURA-20.2-T2-S1",
+                  "title": "Enumerate required data files including historic Section 08 fixtures"
+                },
+                {
+                  "id": "AURA-20.2-T2-S2",
+                  "title": "Add exact-hash reproducible regeneration for any missing public fixture"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-20.3",
+          "title": "Maintainable structure",
+          "tasks": [
+            {
+              "id": "AURA-20.3-T1",
+              "title": "Enforce module cohesion",
+              "subtasks": [
+                {
+                  "id": "AURA-20.3-T1-S1",
+                  "title": "Locate duplicated experimental navigation code and document interfaces"
+                },
+                {
+                  "id": "AURA-20.3-T1-S2",
+                  "title": "Refactor only behind tests preserving historical reproducibility"
+                }
+              ]
+            },
+            {
+              "id": "AURA-20.3-T2",
+              "title": "Document package map",
+              "subtasks": [
+                {
+                  "id": "AURA-20.3-T2-S1",
+                  "title": "Maintain entrypoint and dependency diagram per major module"
+                },
+                {
+                  "id": "AURA-20.3-T2-S2",
+                  "title": "Confirm new contributors can run bounded smoke without hidden setup"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "title": "Shared typed interfaces",
+      "acceptance_status": "Verified locally",
+      "priority": "P2",
+      "linked_sections": [
+        "20"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-21.1",
+          "title": "Schema validation",
+          "tasks": [
+            {
+              "id": "AURA-21.1-T1",
+              "title": "Reproduce contract tests",
+              "subtasks": [
+                {
+                  "id": "AURA-21.1-T1-S1",
+                  "title": "Instantiate Experience, BeliefState, Hypothesis, Skill, Modification and EvaluationReport"
+                },
+                {
+                  "id": "AURA-21.1-T1-S2",
+                  "title": "Reject invalid shapes, provenance, dtypes and missing fields"
+                }
+              ]
+            },
+            {
+              "id": "AURA-21.1-T2",
+              "title": "Freeze wire-compatible versions",
+              "subtasks": [
+                {
+                  "id": "AURA-21.1-T2-S1",
+                  "title": "Version persistent data structures and ledger records"
+                },
+                {
+                  "id": "AURA-21.1-T2-S2",
+                  "title": "Test backward migration and explicit rejection of unsupported schema"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-21.2",
+          "title": "Runtime interoperability",
+          "tasks": [
+            {
+              "id": "AURA-21.2-T1",
+              "title": "Test producer-consumer boundaries",
+              "subtasks": [
+                {
+                  "id": "AURA-21.2-T1-S1",
+                  "title": "Carry observations and beliefs through model, memory and actor"
+                },
+                {
+                  "id": "AURA-21.2-T1-S2",
+                  "title": "Verify no implicit untyped dict conversions bypass guards"
+                }
+              ]
+            },
+            {
+              "id": "AURA-21.2-T2",
+              "title": "Preserve observed vs imagined origin",
+              "subtasks": [
+                {
+                  "id": "AURA-21.2-T2-S1",
+                  "title": "Label every policy/planning data transfer by evidence source"
+                },
+                {
+                  "id": "AURA-21.2-T2-S2",
+                  "title": "Reject mutation or coercion of provenance at handoff"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-21.3",
+          "title": "Evolution and diagnostics",
+          "tasks": [
+            {
+              "id": "AURA-21.3-T1",
+              "title": "Add contract fixtures",
+              "subtasks": [
+                {
+                  "id": "AURA-21.3-T1-S1",
+                  "title": "Save minimal valid/invalid records in test data"
+                },
+                {
+                  "id": "AURA-21.3-T1-S2",
+                  "title": "Run roundtrip JSON/SQLite/checkpoint serialization tests"
+                }
+              ]
+            },
+            {
+              "id": "AURA-21.3-T2",
+              "title": "Provide structured errors",
+              "subtasks": [
+                {
+                  "id": "AURA-21.3-T2-S1",
+                  "title": "Return explicit schema failures with source and field names"
+                },
+                {
+                  "id": "AURA-21.3-T2-S2",
+                  "title": "Ensure external APIs do not expose protected secrets in errors"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "title": "Core integrated loop",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "04",
+        "06",
+        "08",
+        "10",
+        "12",
+        "13",
+        "15",
+        "16"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-22.1",
+          "title": "Online interaction loop",
+          "tasks": [
+            {
+              "id": "AURA-22.1-T1",
+              "title": "Trace sensory-action-update sequence",
+              "subtasks": [
+                {
+                  "id": "AURA-22.1-T1-S1",
+                  "title": "Run reset/observe/predict/act/step/log under a deterministic seed"
+                },
+                {
+                  "id": "AURA-22.1-T1-S2",
+                  "title": "Verify on-policy decisions never read evaluator-only state"
+                }
+              ]
+            },
+            {
+              "id": "AURA-22.1-T2",
+              "title": "Integrate uncertainty-aware policy",
+              "subtasks": [
+                {
+                  "id": "AURA-22.1-T2-S1",
+                  "title": "Gate risky actions and invoke movement recalibration when needed"
+                },
+                {
+                  "id": "AURA-22.1-T2-S2",
+                  "title": "Compare paired goal success and extra action costs"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-22.2",
+          "title": "Online learning and memory",
+          "tasks": [
+            {
+              "id": "AURA-22.2-T1",
+              "title": "Connect replay to model and skill updates",
+              "subtasks": [
+                {
+                  "id": "AURA-22.2-T1-S1",
+                  "title": "Log exactly which observations train encoder, world model and options"
+                },
+                {
+                  "id": "AURA-22.2-T1-S2",
+                  "title": "Verify no invented transitions are promoted to evidence memory"
+                }
+              ]
+            },
+            {
+              "id": "AURA-22.2-T2",
+              "title": "Close curriculum feedback loop",
+              "subtasks": [
+                {
+                  "id": "AURA-22.2-T2-S1",
+                  "title": "Update task selection from measured learning outcomes"
+                },
+                {
+                  "id": "AURA-22.2-T2-S2",
+                  "title": "Account for held-out feedback use as separate learning budget"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-22.3",
+          "title": "Recursive improvement orchestration",
+          "tasks": [
+            {
+              "id": "AURA-22.3-T1",
+              "title": "Invoke bounded proposal pipeline",
+              "subtasks": [
+                {
+                  "id": "AURA-22.3-T1-S1",
+                  "title": "Trigger candidate generation from a measurable deficiency"
+                },
+                {
+                  "id": "AURA-22.3-T1-S2",
+                  "title": "Run protected verifier in a genuinely separate process"
+                }
+              ]
+            },
+            {
+              "id": "AURA-22.3-T2",
+              "title": "Implement commit/rollback state transitions",
+              "subtasks": [
+                {
+                  "id": "AURA-22.3-T2-S1",
+                  "title": "Promote only after independently valid report"
+                },
+                {
+                  "id": "AURA-22.3-T2-S2",
+                  "title": "Restore all learner state on failure and retain failure lineage"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-22.4",
+          "title": "Recovery and long-run endurance",
+          "tasks": [
+            {
+              "id": "AURA-22.4-T1",
+              "title": "Run interrupted multi-hour smoke",
+              "subtasks": [
+                {
+                  "id": "AURA-22.4-T1-S1",
+                  "title": "Inject crashes, restarts, corrupt checkpoints and timeouts"
+                },
+                {
+                  "id": "AURA-22.4-T1-S2",
+                  "title": "Verify resumed run matches deterministic reference on supported paths"
+                }
+              ]
+            },
+            {
+              "id": "AURA-22.4-T2",
+              "title": "Bound memory and compute",
+              "subtasks": [
+                {
+                  "id": "AURA-22.4-T2-S1",
+                  "title": "Enforce runtime quotas without silently dropping evidence"
+                },
+                {
+                  "id": "AURA-22.4-T2-S2",
+                  "title": "Record clean shutdown and incomplete run status"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "title": "Training objectives",
+      "acceptance_status": "Partial",
+      "priority": "P1",
+      "linked_sections": [
+        "06",
+        "07",
+        "15",
+        "18"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-23.1",
+          "title": "Predictive/representation loss",
+          "tasks": [
+            {
+              "id": "AURA-23.1-T1",
+              "title": "Audit every term",
+              "subtasks": [
+                {
+                  "id": "AURA-23.1-T1-S1",
+                  "title": "Verify reconstruction, latent dynamics, image loss and anti-collapse weights"
+                },
+                {
+                  "id": "AURA-23.1-T1-S2",
+                  "title": "Test gradients are finite and correct parameters receive updates"
+                }
+              ]
+            },
+            {
+              "id": "AURA-23.1-T2",
+              "title": "Validate horizon losses",
+              "subtasks": [
+                {
+                  "id": "AURA-23.1-T2-S1",
+                  "title": "Train multi-step residual heads with aligned sequences"
+                },
+                {
+                  "id": "AURA-23.1-T2-S2",
+                  "title": "Compare against equal-update absolute and no-hierarchy controls"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-23.2",
+          "title": "Decision and control objectives",
+          "tasks": [
+            {
+              "id": "AURA-23.2-T1",
+              "title": "Reproduce actor TD target",
+              "subtasks": [
+                {
+                  "id": "AURA-23.2-T1-S1",
+                  "title": "Test reward, terminal mask, truncation bootstrap and gamma"
+                },
+                {
+                  "id": "AURA-23.2-T1-S2",
+                  "title": "Check Q update improves policy on a held-out simple task"
+                }
+              ]
+            },
+            {
+              "id": "AURA-23.2-T2",
+              "title": "Optimize intrinsic objectives without reward hacking",
+              "subtasks": [
+                {
+                  "id": "AURA-23.2-T2-S1",
+                  "title": "Penalize TV noise and raw novelty exploit"
+                },
+                {
+                  "id": "AURA-23.2-T2-S2",
+                  "title": "Compare genuine goal learning against sensory distractor fascination"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-23.3",
+          "title": "Resource/stability objectives",
+          "tasks": [
+            {
+              "id": "AURA-23.3-T1",
+              "title": "Evaluate cost-sensitive meta reward",
+              "subtasks": [
+                {
+                  "id": "AURA-23.3-T1-S1",
+                  "title": "Quantify learning gain per additional action/update/second"
+                },
+                {
+                  "id": "AURA-23.3-T1-S2",
+                  "title": "Match budgets and avoid double counting evaluator queries"
+                }
+              ]
+            },
+            {
+              "id": "AURA-23.3-T2",
+              "title": "Guard optimization failures",
+              "subtasks": [
+                {
+                  "id": "AURA-23.3-T2-S1",
+                  "title": "Inject gradient explosion, NaN, stale replay and zero-variance features"
+                },
+                {
+                  "id": "AURA-23.3-T2-S2",
+                  "title": "Enforce clipping, rejection and diagnostic preservation"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "title": "Benchmarks",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "03",
+        "06",
+        "08",
+        "19",
+        "25"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-24.1",
+          "title": "Public regression baselines",
+          "tasks": [
+            {
+              "id": "AURA-24.1-T1",
+              "title": "Maintain fixed public matrix",
+              "subtasks": [
+                {
+                  "id": "AURA-24.1-T1-S1",
+                  "title": "Run random, fixed, model-based, persistent and composed baselines"
+                },
+                {
+                  "id": "AURA-24.1-T1-S2",
+                  "title": "Keep per-trial action traces, costs, seeds, configurations and hashes"
+                }
+              ]
+            },
+            {
+              "id": "AURA-24.1-T2",
+              "title": "Preserve known counterexamples",
+              "subtasks": [
+                {
+                  "id": "AURA-24.1-T2-S1",
+                  "title": "Retain v117 and v131 composition reversals and severe-noise failures"
+                },
+                {
+                  "id": "AURA-24.1-T2-S2",
+                  "title": "Add tests that fail when adverse trials are omitted or duplicated"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-24.2",
+          "title": "Held-out generalization",
+          "tasks": [
+            {
+              "id": "AURA-24.2-T1",
+              "title": "Preregister independent split",
+              "subtasks": [
+                {
+                  "id": "AURA-24.2-T1-S1",
+                  "title": "Freeze model and development tuning before new environments are drawn"
+                },
+                {
+                  "id": "AURA-24.2-T1-S2",
+                  "title": "Hide evaluation seeds, task families and altered rules until execution"
+                }
+              ]
+            },
+            {
+              "id": "AURA-24.2-T2",
+              "title": "Evaluate transfer by regime",
+              "subtasks": [
+                {
+                  "id": "AURA-24.2-T2-S1",
+                  "title": "Stratify layouts, corruption, horizon, movement changes and task family"
+                },
+                {
+                  "id": "AURA-24.2-T2-S2",
+                  "title": "Report rare failures and unsolved conditions, not only average success"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-24.3",
+          "title": "Statistical and compute validity",
+          "tasks": [
+            {
+              "id": "AURA-24.3-T1",
+              "title": "Use paired grouped inference",
+              "subtasks": [
+                {
+                  "id": "AURA-24.3-T1-S1",
+                  "title": "Bootstrap at independent environment/seed cluster level"
+                },
+                {
+                  "id": "AURA-24.3-T1-S2",
+                  "title": "Report effect size, uncertainty, negative controls and multiple-look policy"
+                }
+              ]
+            },
+            {
+              "id": "AURA-24.3-T2",
+              "title": "Match training/testing budgets",
+              "subtasks": [
+                {
+                  "id": "AURA-24.3-T2-S1",
+                  "title": "Account for all model updates, additional diagnostics and probe actions"
+                },
+                {
+                  "id": "AURA-24.3-T2-S2",
+                  "title": "Include per-controller wall-time and full search cost"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-24.4",
+          "title": "External benchmark certification",
+          "tasks": [
+            {
+              "id": "AURA-24.4-T1",
+              "title": "Obtain independent evaluator agreement",
+              "subtasks": [
+                {
+                  "id": "AURA-24.4-T1-S1",
+                  "title": "Supply immutable source, task interface and non-promoting receipt template"
+                },
+                {
+                  "id": "AURA-24.4-T1-S2",
+                  "title": "Require evaluator-controlled hidden test generator and execution host"
+                }
+              ]
+            },
+            {
+              "id": "AURA-24.4-T2",
+              "title": "Review signed scorecards",
+              "subtasks": [
+                {
+                  "id": "AURA-24.4-T2-S1",
+                  "title": "Verify signed raw outcomes and reproducibility on third-party host"
+                },
+                {
+                  "id": "AURA-24.4-T2-S2",
+                  "title": "Decide criterion by criterion and retain disputes without automatic promotion"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "title": "Recursive validation",
+      "acceptance_status": "Open",
+      "priority": "P0",
+      "linked_sections": [
+        "16",
+        "17",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-25.1",
+          "title": "Two-generation candidate chain",
+          "tasks": [
+            {
+              "id": "AURA-25.1-T1",
+              "title": "Predeclare two-step improvement targets",
+              "subtasks": [
+                {
+                  "id": "AURA-25.1-T1-S1",
+                  "title": "Define performance, cost, safety and retention metrics for G0, G1 and G2"
+                },
+                {
+                  "id": "AURA-25.1-T1-S2",
+                  "title": "Freeze evaluator policies and minimum gains before search"
+                }
+              ]
+            },
+            {
+              "id": "AURA-25.1-T2",
+              "title": "Execute full candidate lineage",
+              "subtasks": [
+                {
+                  "id": "AURA-25.1-T2-S1",
+                  "title": "Run G0→G1→G2 with real proposals and separate held-out evaluation"
+                },
+                {
+                  "id": "AURA-25.1-T2-S2",
+                  "title": "Record every rejected sibling and rollback, not only winning descendant"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-25.2",
+          "title": "Statistical validation",
+          "tasks": [
+            {
+              "id": "AURA-25.2-T1",
+              "title": "Test paired gains independently",
+              "subtasks": [
+                {
+                  "id": "AURA-25.2-T1-S1",
+                  "title": "Use disjoint development and blind confirmation environments per generation"
+                },
+                {
+                  "id": "AURA-25.2-T1-S2",
+                  "title": "Evaluate worst-seed regression and family-wise repeated-look risk"
+                }
+              ]
+            },
+            {
+              "id": "AURA-25.2-T2",
+              "title": "Check cumulative retained improvement",
+              "subtasks": [
+                {
+                  "id": "AURA-25.2-T2-S1",
+                  "title": "Rerun G0/G1/G2 on the same independent held-out families"
+                },
+                {
+                  "id": "AURA-25.2-T2-S2",
+                  "title": "Reject chains where second gain erases earlier skills or inflates cost"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-25.3",
+          "title": "External adjudication",
+          "tasks": [
+            {
+              "id": "AURA-25.3-T1",
+              "title": "Appoint independent assessor",
+              "subtasks": [
+                {
+                  "id": "AURA-25.3-T1-S1",
+                  "title": "Obtain conflict-of-interest statement and assessor-owned task seeds"
+                },
+                {
+                  "id": "AURA-25.3-T1-S2",
+                  "title": "Freeze software and verifier hashes prior to any evaluator access"
+                }
+              ]
+            },
+            {
+              "id": "AURA-25.3-T2",
+              "title": "Receive and audit full receipts",
+              "subtasks": [
+                {
+                  "id": "AURA-25.3-T2-S1",
+                  "title": "Validate signatures, hash manifests and all trial traces"
+                },
+                {
+                  "id": "AURA-25.3-T2-S2",
+                  "title": "Require independent reruns and discrepancy resolution before acceptance"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-25.4",
+          "title": "Publication and gating",
+          "tasks": [
+            {
+              "id": "AURA-25.4-T1",
+              "title": "Produce reproducible chain dossier",
+              "subtasks": [
+                {
+                  "id": "AURA-25.4-T1-S1",
+                  "title": "Export full lineage, source, seeds escrow, clocks, budgets and negative trials"
+                },
+                {
+                  "id": "AURA-25.4-T1-S2",
+                  "title": "Ensure a new auditor can reproduce evidence without private developer state"
+                }
+              ]
+            },
+            {
+              "id": "AURA-25.4-T2",
+              "title": "Keep gate Open until all conditions pass",
+              "subtasks": [
+                {
+                  "id": "AURA-25.4-T2-S1",
+                  "title": "Store a machine-readable pass/fail per required subcriterion"
+                },
+                {
+                  "id": "AURA-25.4-T2-S2",
+                  "title": "Prohibit broad recursive-learning claims based only on one accepted child"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "title": "Execution phases",
+      "acceptance_status": "Partial",
+      "priority": "P1",
+      "linked_sections": [
+        "01",
+        "22",
+        "24",
+        "25",
+        "30"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-26.1",
+          "title": "Formal phase map",
+          "tasks": [
+            {
+              "id": "AURA-26.1-T1",
+              "title": "Enumerate phases 1–7",
+              "subtasks": [
+                {
+                  "id": "AURA-26.1-T1-S1",
+                  "title": "Map each phase to current modules, prerequisites and missing milestones"
+                },
+                {
+                  "id": "AURA-26.1-T1-S2",
+                  "title": "Distinguish functional smoke from research acceptance"
+                }
+              ]
+            },
+            {
+              "id": "AURA-26.1-T2",
+              "title": "Define phase exit criteria",
+              "subtasks": [
+                {
+                  "id": "AURA-26.1-T2-S1",
+                  "title": "Require unit, integration, transfer and audit deliverables per stage"
+                },
+                {
+                  "id": "AURA-26.1-T2-S2",
+                  "title": "Prohibit advance based solely on source-file presence"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-26.2",
+          "title": "Progressive implementation",
+          "tasks": [
+            {
+              "id": "AURA-26.2-T1",
+              "title": "Execute prerequisites first",
+              "subtasks": [
+                {
+                  "id": "AURA-26.2-T1-S1",
+                  "title": "Prioritize runtime, verifier, world-model and exploration blockers"
+                },
+                {
+                  "id": "AURA-26.2-T1-S2",
+                  "title": "Switch to other reachable gates if external review is delayed"
+                }
+              ]
+            },
+            {
+              "id": "AURA-26.2-T2",
+              "title": "Preserve controlled checkpoints",
+              "subtasks": [
+                {
+                  "id": "AURA-26.2-T2-S1",
+                  "title": "Tag source and bundle per validated phase or experiment"
+                },
+                {
+                  "id": "AURA-26.2-T2-S2",
+                  "title": "Attach negative results and prior acceptance register to each version"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-26.3",
+          "title": "Final phase integration",
+          "tasks": [
+            {
+              "id": "AURA-26.3-T1",
+              "title": "Re-run cross-phase suite",
+              "subtasks": [
+                {
+                  "id": "AURA-26.3-T1-S1",
+                  "title": "Execute all phase-specific commands from an isolated checkout"
+                },
+                {
+                  "id": "AURA-26.3-T1-S2",
+                  "title": "Validate no later phase weakens earlier protected constraints"
+                }
+              ]
+            },
+            {
+              "id": "AURA-26.3-T2",
+              "title": "Prepare final readiness review",
+              "subtasks": [
+                {
+                  "id": "AURA-26.3-T2-S1",
+                  "title": "Assemble phase-by-phase evidence and unresolved limitations"
+                },
+                {
+                  "id": "AURA-26.3-T2-S2",
+                  "title": "Hold Phase 7 open until independent final acceptance succeeds"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "27",
+      "title": "Commands and artifacts",
+      "acceptance_status": "Partial",
+      "priority": "P1",
+      "linked_sections": [
+        "20",
+        "28",
+        "29"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-27.1",
+          "title": "Supported commands",
+          "tasks": [
+            {
+              "id": "AURA-27.1-T1",
+              "title": "Verify training and evaluation commands",
+              "subtasks": [
+                {
+                  "id": "AURA-27.1-T1-S1",
+                  "title": "Run train, evaluate, recursive, minimum-architecture and held-out CLI entries"
+                },
+                {
+                  "id": "AURA-27.1-T1-S2",
+                  "title": "Capture exact invocation, environment and process exit in every case"
+                }
+              ]
+            },
+            {
+              "id": "AURA-27.1-T2",
+              "title": "Test options and failures",
+              "subtasks": [
+                {
+                  "id": "AURA-27.1-T2-S1",
+                  "title": "Validate unknown task names, missing files, malformed configs and timeout handling"
+                },
+                {
+                  "id": "AURA-27.1-T2-S2",
+                  "title": "Confirm nonzero exit with actionable diagnostics and no state promotion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-27.2",
+          "title": "Artifact completeness",
+          "tasks": [
+            {
+              "id": "AURA-27.2-T1",
+              "title": "Standardize experiment output",
+              "subtasks": [
+                {
+                  "id": "AURA-27.2-T1-S1",
+                  "title": "Save run manifest, config, source SHA, checkpoints and raw per-trial records"
+                },
+                {
+                  "id": "AURA-27.2-T1-S2",
+                  "title": "Create SHA-256 index and verify replay of representative trials"
+                }
+              ]
+            },
+            {
+              "id": "AURA-27.2-T2",
+              "title": "Capture failed executions durably",
+              "subtasks": [
+                {
+                  "id": "AURA-27.2-T2-S1",
+                  "title": "Persist partial logs and timed-out process state atomically"
+                },
+                {
+                  "id": "AURA-27.2-T2-S2",
+                  "title": "Ensure CI uploads results on both pass and fail, with retention policy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-27.3",
+          "title": "Public reproducibility",
+          "tasks": [
+            {
+              "id": "AURA-27.3-T1",
+              "title": "Test archive portability",
+              "subtasks": [
+                {
+                  "id": "AURA-27.3-T1-S1",
+                  "title": "Extract versioned source without installed local development tree"
+                },
+                {
+                  "id": "AURA-27.3-T1-S2",
+                  "title": "Run documented commands from clean working directory"
+                }
+              ]
+            },
+            {
+              "id": "AURA-27.3-T2",
+              "title": "Publish reproduction index",
+              "subtasks": [
+                {
+                  "id": "AURA-27.3-T2-S1",
+                  "title": "Map every important acceptance claim to commands and artifact paths"
+                },
+                {
+                  "id": "AURA-27.3-T2-S2",
+                  "title": "Label fallback-only, hosted official and externally independent evidence distinctly"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "title": "Quality and tests",
+      "acceptance_status": "Partial",
+      "priority": "P0",
+      "linked_sections": [
+        "03",
+        "17",
+        "22",
+        "24"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-28.1",
+          "title": "Reliable complete suite",
+          "tasks": [
+            {
+              "id": "AURA-28.1-T1",
+              "title": "Run durable hosted full suite",
+              "subtasks": [
+                {
+                  "id": "AURA-28.1-T1-S1",
+                  "title": "Execute all collected tests under Python 3.11/3.12"
+                },
+                {
+                  "id": "AURA-28.1-T1-S2",
+                  "title": "Capture explicit exit code, JUnit XML, raw log and source commit for each matrix cell"
+                }
+              ]
+            },
+            {
+              "id": "AURA-28.1-T2",
+              "title": "Reconstruct test fixtures safely",
+              "subtasks": [
+                {
+                  "id": "AURA-28.1-T2-S1",
+                  "title": "Restore historical Section 08 data from deterministic generators"
+                },
+                {
+                  "id": "AURA-28.1-T2-S2",
+                  "title": "Match original content hashes and fail rather than silently alter tests"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-28.2",
+          "title": "Official and optional platform gates",
+          "tasks": [
+            {
+              "id": "AURA-28.2-T1",
+              "title": "Validate Gymnasium and rendering",
+              "subtasks": [
+                {
+                  "id": "AURA-28.2-T1-S1",
+                  "title": "Run official checker and registered env tests with actual installed backend"
+                },
+                {
+                  "id": "AURA-28.2-T1-S2",
+                  "title": "Test render RNG purity, observation spaces, reset/step and termination semantics"
+                }
+              ]
+            },
+            {
+              "id": "AURA-28.2-T2",
+              "title": "Exercise privileged optional probes",
+              "subtasks": [
+                {
+                  "id": "AURA-28.2-T2-S1",
+                  "title": "Run namespace/seccomp tests on a compatible authorized Linux worker"
+                },
+                {
+                  "id": "AURA-28.2-T2-S2",
+                  "title": "Distinguish skipped unsupported capabilities from verified protections"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-28.3",
+          "title": "Adversarial and restart testing",
+          "tasks": [
+            {
+              "id": "AURA-28.3-T1",
+              "title": "Protect verifier invariants",
+              "subtasks": [
+                {
+                  "id": "AURA-28.3-T1-S1",
+                  "title": "Fuzz invalid JSON, descriptor leaks, symlinks and policy-change attempts"
+                },
+                {
+                  "id": "AURA-28.3-T1-S2",
+                  "title": "Preserve rejected inputs and verify protected files are unchanged"
+                }
+              ]
+            },
+            {
+              "id": "AURA-28.3-T2",
+              "title": "Validate runtime recovery",
+              "subtasks": [
+                {
+                  "id": "AURA-28.3-T2-S1",
+                  "title": "Kill and restart mid-evaluation, mid-ledger write and mid-training"
+                },
+                {
+                  "id": "AURA-28.3-T2-S2",
+                  "title": "Compare persisted state and ensure no phantom successes"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-28.4",
+          "title": "Continuous regression management",
+          "tasks": [
+            {
+              "id": "AURA-28.4-T1",
+              "title": "Add stress regression inventory",
+              "subtasks": [
+                {
+                  "id": "AURA-28.4-T1-S1",
+                  "title": "Pin v117/v131 counterexamples and Section 08 hard seeds"
+                },
+                {
+                  "id": "AURA-28.4-T1-S2",
+                  "title": "Require CI audit of failures even when aggregate performance improves"
+                }
+              ]
+            },
+            {
+              "id": "AURA-28.4-T2",
+              "title": "Track coverage and flaky behavior",
+              "subtasks": [
+                {
+                  "id": "AURA-28.4-T2-S1",
+                  "title": "Run independent repetitions with controlled time limits"
+                },
+                {
+                  "id": "AURA-28.4-T2-S2",
+                  "title": "Separate actual flaky tests from environment interruptions and archive every exit"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "title": "Repository workflow",
+      "acceptance_status": "Partial",
+      "priority": "P1",
+      "linked_sections": [
+        "20",
+        "27",
+        "28"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-29.1",
+          "title": "Branch and pull-request discipline",
+          "tasks": [
+            {
+              "id": "AURA-29.1-T1",
+              "title": "Preserve protected default branch",
+              "subtasks": [
+                {
+                  "id": "AURA-29.1-T1-S1",
+                  "title": "Develop on separate integration branches with auditable PR diffs"
+                },
+                {
+                  "id": "AURA-29.1-T1-S2",
+                  "title": "Require explicit review before merge and reject force-push of history"
+                }
+              ]
+            },
+            {
+              "id": "AURA-29.1-T2",
+              "title": "Document upstream/downstream ancestry",
+              "subtasks": [
+                {
+                  "id": "AURA-29.1-T2-S1",
+                  "title": "Verify required f582278, 2c8f161, 8fe6ce2 and f0ab324 reachable in source history"
+                },
+                {
+                  "id": "AURA-29.1-T2-S2",
+                  "title": "Preserve concurrent descendants when selecting newest integrated checkpoint"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-29.2",
+          "title": "CI and release hygiene",
+          "tasks": [
+            {
+              "id": "AURA-29.2-T1",
+              "title": "Enforce required quality checks",
+              "subtasks": [
+                {
+                  "id": "AURA-29.2-T1-S1",
+                  "title": "Attach Python matrix, official backend, negative fixtures and trusted verifier checks"
+                },
+                {
+                  "id": "AURA-29.2-T1-S2",
+                  "title": "Fail the release gate when an expected run is skipped or missing"
+                }
+              ]
+            },
+            {
+              "id": "AURA-29.2-T2",
+              "title": "Package versioned checkpoint",
+              "subtasks": [
+                {
+                  "id": "AURA-29.2-T2-S1",
+                  "title": "Publish source ZIP, complete Git bundle and manifest"
+                },
+                {
+                  "id": "AURA-29.2-T2-S2",
+                  "title": "Verify archive integrity, reproducible commands and citation to original commit"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-29.3",
+          "title": "Issue and review management",
+          "tasks": [
+            {
+              "id": "AURA-29.3-T1",
+              "title": "Create acceptance-linked backlog",
+              "subtasks": [
+                {
+                  "id": "AURA-29.3-T1-S1",
+                  "title": "Cross-link work-breakdown IDs, PRs, issues and test evidence"
+                },
+                {
+                  "id": "AURA-29.3-T1-S2",
+                  "title": "Keep blocked external work distinct from code-ready subtasks"
+                }
+              ]
+            },
+            {
+              "id": "AURA-29.3-T2",
+              "title": "Apply conservative review decisions",
+              "subtasks": [
+                {
+                  "id": "AURA-29.3-T2-S1",
+                  "title": "Compare implementation results to original acceptance register"
+                },
+                {
+                  "id": "AURA-29.3-T2-S2",
+                  "title": "Retain draft status if independent evidence or security integration is missing"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "30",
+      "title": "Final acceptance",
+      "acceptance_status": "Open",
+      "priority": "P0",
+      "linked_sections": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "31"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-30.1",
+          "title": "Per-section review",
+          "tasks": [
+            {
+              "id": "AURA-30.1-T1",
+              "title": "Audit 31 original criteria",
+              "subtasks": [
+                {
+                  "id": "AURA-30.1-T1-S1",
+                  "title": "Match each section to its exact original requirement, test and signed evidence"
+                },
+                {
+                  "id": "AURA-30.1-T1-S2",
+                  "title": "Record explicit pass, partial, open or contested outcome with rationale"
+                }
+              ]
+            },
+            {
+              "id": "AURA-30.1-T2",
+              "title": "Reconcile historical reports",
+              "subtasks": [
+                {
+                  "id": "AURA-30.1-T2-S1",
+                  "title": "Validate local gates, source ancestry and externally pinned evidence"
+                },
+                {
+                  "id": "AURA-30.1-T2-S2",
+                  "title": "Keep later failed replications and contradictory results in the final dossier"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-30.2",
+          "title": "End-to-end independent assessment",
+          "tasks": [
+            {
+              "id": "AURA-30.2-T1",
+              "title": "Rebuild and rerun full system externally",
+              "subtasks": [
+                {
+                  "id": "AURA-30.2-T1-S1",
+                  "title": "Have a separate assessor execute a frozen source and hidden task battery"
+                },
+                {
+                  "id": "AURA-30.2-T1-S2",
+                  "title": "Audit all raw outcomes, budgets, failures, evaluator privileges and signatures"
+                }
+              ]
+            },
+            {
+              "id": "AURA-30.2-T2",
+              "title": "Verify recursive-generalization claim",
+              "subtasks": [
+                {
+                  "id": "AURA-30.2-T2-S1",
+                  "title": "Demand two independently accepted improvement generations and broad transfer"
+                },
+                {
+                  "id": "AURA-30.2-T2-S2",
+                  "title": "Reject declarations based on simulation-only or controlled development tasks"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-30.3",
+          "title": "Completion and pause",
+          "tasks": [
+            {
+              "id": "AURA-30.3-T1",
+              "title": "Publish final audit package",
+              "subtasks": [
+                {
+                  "id": "AURA-30.3-T1-S1",
+                  "title": "Release source, full history, manifests, accepted/rejected candidates and reproducibility guide"
+                },
+                {
+                  "id": "AURA-30.3-T1-S2",
+                  "title": "Compute cryptographic hashes and sign independent evaluation references"
+                }
+              ]
+            },
+            {
+              "id": "AURA-30.3-T2",
+              "title": "Stop completion automation on proof",
+              "subtasks": [
+                {
+                  "id": "AURA-30.3-T2-S1",
+                  "title": "Check all 31 section gates explicitly and require an externally reviewed final pass"
+                },
+                {
+                  "id": "AURA-30.3-T2-S2",
+                  "title": "Archive final report and pause the hourly completion task only after full proof"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "31",
+      "title": "Engineering principle",
+      "acceptance_status": "Ongoing",
+      "priority": "P1",
+      "linked_sections": [
+        "02",
+        "17",
+        "25",
+        "29"
+      ],
+      "subsections": [
+        {
+          "id": "AURA-31.1",
+          "title": "Evidence over claims",
+          "tasks": [
+            {
+              "id": "AURA-31.1-T1",
+              "title": "Maintain claim-to-evidence policy",
+              "subtasks": [
+                {
+                  "id": "AURA-31.1-T1-S1",
+                  "title": "Require each improvement statement to cite reproducible test records"
+                },
+                {
+                  "id": "AURA-31.1-T1-S2",
+                  "title": "Reject AGI, autonomous-general-learning or security claims beyond demonstrated scope"
+                }
+              ]
+            },
+            {
+              "id": "AURA-31.1-T2",
+              "title": "Preserve negative learning outcomes",
+              "subtasks": [
+                {
+                  "id": "AURA-31.1-T2-S1",
+                  "title": "Archive failed candidates, unexpected regressions and interrupted runs"
+                },
+                {
+                  "id": "AURA-31.1-T2-S2",
+                  "title": "Make trend summaries include failures and evaluated sample counts"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-31.2",
+          "title": "Conservative change selection",
+          "tasks": [
+            {
+              "id": "AURA-31.2-T1",
+              "title": "Prefer smallest measurable next change",
+              "subtasks": [
+                {
+                  "id": "AURA-31.2-T1-S1",
+                  "title": "Compare proposed complexity, risk and evidence value against baseline"
+                },
+                {
+                  "id": "AURA-31.2-T1-S2",
+                  "title": "Select prerequisites before speculative system rewrites"
+                }
+              ]
+            },
+            {
+              "id": "AURA-31.2-T2",
+              "title": "Require safe reversible experiments",
+              "subtasks": [
+                {
+                  "id": "AURA-31.2-T2-S1",
+                  "title": "Gate changes behind typed configs, tests and separate branches"
+                },
+                {
+                  "id": "AURA-31.2-T2-S2",
+                  "title": "Roll back regressions without modifying trusted verifier state"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "AURA-31.3",
+          "title": "Long-term reproducibility and stewardship",
+          "tasks": [
+            {
+              "id": "AURA-31.3-T1",
+              "title": "Continue periodic execution with audit trail",
+              "subtasks": [
+                {
+                  "id": "AURA-31.3-T1-S1",
+                  "title": "Select highest-impact reachable task from the WBS each run"
+                },
+                {
+                  "id": "AURA-31.3-T1-S2",
+                  "title": "Record current commit, command, outcome, blockers and next dependency"
+                }
+              ]
+            },
+            {
+              "id": "AURA-31.3-T2",
+              "title": "Terminate only on independently supported closure",
+              "subtasks": [
+                {
+                  "id": "AURA-31.3-T2-S1",
+                  "title": "Maintain explicit 31/31 audit and protected stop condition"
+                },
+                {
+                  "id": "AURA-31.3-T2-S2",
+                  "title": "Pause automation after final verified evidence, not after controlled or partial success"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
