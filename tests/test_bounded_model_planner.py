@@ -72,12 +72,14 @@ def test_real_world_model_predictions_are_finite_and_never_train_or_mutate_model
     training_result=model.train_batch((x,actions,y))
     assert model.train_steps==1 and np.isfinite(training_result['loss'])
     model.train()
+    model.heads[0].eval()  # a frozen submodule must remain in evaluation mode
     params={k:v.detach().clone() for k,v in model.state_dict().items()}
     p=BoundedModelPlanner(model,max_horizon=2,max_evaluations=16)
     proposal=p.propose(image(0),image(127))
     assert proposal.status=='proposal' and proposal.evaluated_sequences==16
     assert len(proposal.actions)==2
-    assert model.training and model.train_steps==1
+    assert model.training and not model.heads[0].training and model.heads[1].training
+    assert model.train_steps==1
     assert all(torch.equal(model.state_dict()[k],v) for k,v in params.items())
 
 
