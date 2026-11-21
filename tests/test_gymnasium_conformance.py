@@ -17,6 +17,39 @@ def test_official_gymnasium_contract(task):
     from gymnasium.utils.env_checker import check_env
     env = create_environment(task, noise=0.03)
     try:
-        check_env(env, skip_render_check=True)
+        check_env(env, skip_render_check=False)
+    finally:
+        env.close()
+
+
+def test_rgb_render_is_observation_consistent_and_rng_pure():
+    import numpy as np
+    for task in TASKS:
+        a = create_environment(task, noise=0.2, render_mode='rgb_array')
+        b = create_environment(task, noise=0.2, render_mode='rgb_array')
+        try:
+            observation, _ = a.reset(seed=8123)
+            comparison, _ = b.reset(seed=8123)
+            assert np.array_equal(observation, comparison)
+            for _ in range(3):
+                frame = a.render()
+                assert frame.shape == (7, 7, 3) and frame.dtype == np.uint8
+                assert np.array_equal(frame.transpose(2, 0, 1), observation)
+                frame[:] = 0
+            next_a, *_ = a.step(1)
+            next_b, *_ = b.step(1)
+            assert np.array_equal(next_a, next_b), task
+        finally:
+            a.close()
+            b.close()
+
+
+def test_render_mode_validated_and_optional():
+    import pytest
+    with pytest.raises(ValueError):
+        create_environment(render_mode='invalid')
+    env = create_environment(render_mode=None)
+    try:
+        assert env.render() is None
     finally:
         env.close()

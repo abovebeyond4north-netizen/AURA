@@ -34,11 +34,14 @@ COLORS = {
 }
 
 class ProceduralWorld(gym.Env):
-    metadata = {'render_modes': ['rgb_array']}
+    metadata = {'render_modes': ['rgb_array'], 'render_fps': 4}
     def __init__(self, task: str = 'key', size: int = 9, max_steps: int = 50,
                  noise: float = 0, partial: bool = True, diagnostics: bool = False,
-                 door_column: int | None = None, reverse_after_key: bool = False):
+                 door_column: int | None = None, reverse_after_key: bool = False,
+                 render_mode: str | None = 'rgb_array'):
         if task not in TASKS: raise ValueError(f'Unknown task: {task}')
+        if render_mode not in (None, 'rgb_array'): raise ValueError('Unsupported render mode')
+        self.render_mode = render_mode
         if size < 7 or size%2==0: raise ValueError('Grid size must be odd and at least 7')
         self.task, self.size, self.max_steps, self.noise, self.partial = task, size, max_steps, noise, partial
         if door_column is not None and (type(door_column) is not int or not 1 <= door_column < size-1):
@@ -73,7 +76,9 @@ class ProceduralWorld(gym.Env):
         self.walls |= {(row, col) for col in range(1,self.size-1) if col != self.door_column}
         self.walls.discard(self.door)
         self._rule = int(self._rng.integers(0,2)) if self.task == 'hidden' else 0
-        return self._observe(), {'task_family': self.task}  # no hidden rule
+        observation = self._observe()
+        self._last_observation = observation.copy()
+        return observation, {'task_family': self.task}  # no hidden rule
 
     def _tile(self, p: tuple[int,int]) -> str:
         if p == self.agent: return 'agent'
@@ -127,9 +132,18 @@ class ProceduralWorld(gym.Env):
         if self.task == 'hidden' and self._rule == 0 and self.has_key and self.agent == self.door: self.door_open = True
         done = self.agent == self.goal
         truncated = self.steps >= self.max_steps and not done
-        return self._observe(), float(1.0 if done else -0.01), done, truncated, {'success': done}
+        observation = self._observe()
+        self._last_observation = observation.copy()
+        return observation, float(1.0 if done else -0.01), done, truncated, {'success': done}
 
-    def render(self): return np.transpose(self._observe(), (1,2,0))
+    def render(self):
+        if self.render_mode is None:
+            return None
+        # Rendering must not advance observation noise RNG or change the trajectory.
+        return np.transpose(self._last_observation, (1,2,0)).copy()
+
+    def close(self):
+        return None
 
     def diagnostic_state(self):
         if not self._diagnostics: raise PermissionError('Diagnostic state is available only to evaluator-created environments')
