@@ -7,3 +7,4 @@ runs/
 *.egg-info/
 coverage.xml
 .coverage
+.skill-forge/

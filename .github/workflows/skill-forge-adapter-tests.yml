@@ -1,0 +1,41 @@
+name: Skill Forge event adapter tests
+
+on:
+  pull_request:
+    paths:
+      - scripts/forge_task_event.py
+      - scripts/forge_discover.py
+      - tests/test_forge_task_event.py
+      - tests/test_forge_discover.py
+      - docs/skill_forge_integration.md
+      - .github/workflows/skill-forge-adapter-tests.yml
+  push:
+    branches:
+      - feature/evidence-gated-skill-forge-events
+    paths:
+      - scripts/forge_task_event.py
+      - scripts/forge_discover.py
+      - tests/test_forge_task_event.py
+      - tests/test_forge_discover.py
+      - docs/skill_forge_integration.md
+      - .github/workflows/skill-forge-adapter-tests.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adapter-unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Configure Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run exporter and proposal-only pipeline tests
+        run: python -m unittest discover -s tests -p 'test_forge_*.py' -v
