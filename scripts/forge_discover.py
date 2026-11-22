@@ -58,6 +58,35 @@ def _invoke(args: list[str], label: str):
     return _parse_result(result, label)
 
 
+
+def _registry_name_collisions(workspace: Path, observations: Path) -> list[str]:
+    """Fail closed on exact-name duplicates in the local Forge registry.
+
+    This does not replace semantic review of other installed host skills.
+    """
+    registry = workspace / "registry"
+    _reject_symlink(registry, "skill registry")
+    known: set[str] = set()
+    for state in ("installed", "staged"):
+        folder = registry / state
+        _reject_symlink(folder, "skill registry state")
+        if folder.is_dir():
+            known.update(p.name for p in folder.iterdir() if p.is_dir())
+    if not known:
+        return []
+    observed: set[str] = set()
+    with observations.open(encoding="utf-8") as stream:
+        for line in stream:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            if isinstance(row, dict) and isinstance(row.get("workflow"), dict):
+                name = row["workflow"].get("name")
+                if isinstance(name, str):
+                    observed.add(name)
+    return sorted(known.intersection(observed))
+
+
 def pipeline(forge_root: Path, workspace: Path, events: Path) -> dict:
     """Run the installed Forge's proposal-only bridge and observe programs.
 
@@ -91,6 +120,10 @@ def pipeline(forge_root: Path, workspace: Path, events: Path) -> dict:
                            "--observations", str(observations)], "Forge event bridge")
         if not isinstance(bridged, dict) or bridged.get("promotion_authorized") is not False:
             raise PipelineError("Forge bridge did not confirm proposal-only mode")
+        collisions = _registry_name_collisions(work, observations)
+        if collisions:
+            raise PipelineError("existing local skill names require revision review: "
+                                + ", ".join(collisions))
         proposed = _invoke([sys.executable, str(observe_script), "observe", "--observations",
                             str(observations), "--inbox", str(inbox)], "Forge observe")
         if not isinstance(proposed, list) or any(
