@@ -66,6 +66,17 @@ class PipelineTests(unittest.TestCase):
             pipeline(self.forge, self.work, self.events)
 
     @patch("scripts.forge_discover.subprocess.run")
+    def test_existing_local_registry_name_blocks_duplicate_candidate(self, runner):
+        state = self.work / "registry" / "installed" / "test-skill"
+        state.mkdir(parents=True)
+        self.work.joinpath("observations.jsonl").write_text(
+            json.dumps({"workflow": {"name": "test-skill"}, "task_id": "task-a"}) + "\n")
+        runner.return_value = self._responses()[0]
+        with self.assertRaisesRegex(PipelineError, "existing local skill names"):
+            pipeline(self.forge, self.work, self.events)
+        self.assertEqual(runner.call_count, 1)
+
+    @patch("scripts.forge_discover.subprocess.run")
     def test_no_events_does_not_launch_scripts(self, runner):
         self.events.unlink()
         with self.assertRaisesRegex(PipelineError, "events must exist"):
