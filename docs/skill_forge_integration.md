@@ -44,8 +44,13 @@ python scripts/forge_task_event.py \
   --out .skill-forge/events.jsonl
 ```
 
-The script whitelists workflow fields, refuses failed runs, detects repeated
-IDs, and uses an exclusive file lock for idempotent writes. It deliberately
+The script whitelists workflow fields, rejects descriptions incompatible with
+Forge's 1024-character combined-trigger limit, refuses known prohibited
+instruction patterns, rejects malformed/incomplete existing JSONL logs, and
+prevents writes through symlinked output files. It refuses failed runs, detects
+repeated IDs, restricts event log permissions to mode 0600, and uses an exclusive
+file lock for idempotent writes. The pattern-based detection is not a replacement
+for manual privacy and security review. It deliberately
 does not execute tasks or determine their success: **the caller is responsible
 for verifying every completion claim**.
 
