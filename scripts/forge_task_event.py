@@ -24,6 +24,13 @@ SENSITIVE = re.compile(
     r"\b(?:sk-|gh[pousr]_|github_pat_)[A-Za-z0-9_-]{12,}|"
     r"\b(?:password|access[_-]?token|api[_-]?key|secret)\s*[:=])"
 )
+# Mirror Forge validation to prevent silently discarded task observations.
+FORGE_BANNED = re.compile(
+    r"(?i)(ignore\s+(?:all\s+)?(?:previous|system|developer)\s+instructions|"
+    r"(?:disable|bypass)\s+(?:safety|logging|security|verification)|"
+    r"(?:exfiltrat|steal\s+credentials|password\s+harvest)|"
+    r"rm\s+-rf\s+/|curl\s+[^\n]+\|\s*(?:ba)?sh)"
+)
 MAX_WORKFLOW_FILE = 16_384
 MAX_EVENT_LOG = 10_000_000
 
@@ -53,6 +60,18 @@ def read_reviewed_workflow(path: Path) -> dict:
         raise ValueError("workflow steps must contain 2-30 nonempty strings <=1000 characters")
     if clean["risk"] not in RISKS:
         raise ValueError("workflow risk must use the Forge risk categories")
+    trigger = " ".join((
+        clean["description"].replace("\r", " ").replace("\n", " ").strip(),
+        "Use when " + clean["when"].replace("\r", " ").replace("\n", " ").strip(),
+        "Do not use when " + clean["when_not"].replace("\r", " ").replace("\n", " ").strip(),
+    ))
+    if len(trigger) > 1024:
+        raise ValueError("Forge combined workflow description exceeds 1024 characters")
+    if any(char in trigger for char in "<>"):
+        raise ValueError("Forge frontmatter forbids angle brackets")
+    combined = "\n".join((clean["description"], clean["when"], clean["when_not"], *steps))
+    if FORGE_BANNED.search(combined):
+        raise ValueError("workflow contains a prohibited instruction pattern")
     text = json.dumps(clean, ensure_ascii=False)
     if SENSITIVE.search(text):
         raise ValueError("workflow appears to contain credential or secret material; review and redact")
@@ -61,11 +80,18 @@ def read_reviewed_workflow(path: Path) -> dict:
 
 def append_event(destination: Path, event: dict) -> bool:
     destination.parent.mkdir(parents=True, exist_ok=True)
-    handle = os.open(destination, os.O_RDWR | os.O_CREAT, 0o600)
+    handle = os.open(destination, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
     with os.fdopen(handle, "r+", encoding="utf-8") as out:
         fcntl.flock(out.fileno(), fcntl.LOCK_EX)
+        os.fchmod(out.fileno(), 0o600)
         if os.fstat(out.fileno()).st_size > MAX_EVENT_LOG:
             raise ValueError("event log exceeds 10 MB; rotate the file before writing")
+        out.seek(0, os.SEEK_END)
+        size = out.tell()
+        if size:
+            out.seek(size - 1)
+            if out.read(1) != "\n":
+                raise ValueError("event log does not end in a newline; refusing unsafe append")
         out.seek(0)
         for line in out:
             if not line.strip():
