@@ -94,8 +94,12 @@ skill. The environment running this command must already have the trusted Forge
 package on disk. The `--forge-root` parameter is an explicit trust decision:
 do not point it at an unreviewed third-party directory.
 
-The wrapper reports event ingestion counts and candidate proposals. The
-reported task successes come from the event producer and are **not independent
+The wrapper reports event ingestion counts and candidate proposals. It
+refuses to propose a workflow whose exact skill name is already present in
+`.skill-forge/registry/staged` or `.skill-forge/registry/installed`; examine
+matching skills for revision instead. This does not check semantic duplicates
+or skills installed in other host folders, so registry review is still required.
+The reported task successes come from the event producer and are **not independent
 validation**. In particular, repeated GitHub CI reruns are not three distinct
 agent task successes. Proposed candidate files remain in
 `.skill-forge/inbox` without evidence or auto-installation.
