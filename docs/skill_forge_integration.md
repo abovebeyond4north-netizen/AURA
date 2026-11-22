@@ -76,6 +76,42 @@ produce a *candidate proposal only*. Do not manufacture task IDs, treat CI
 reruns as independent real agent outcomes, or copy proposal files into a live
 host skill folder without review.
 
+### Proposal-only orchestration
+
+After real task events exist, the AURA wrapper can invoke the two trusted
+Forge commands together, under a local lock:
+
+```bash
+python scripts/forge_discover.py \
+  --forge-root "$FORGE_ROOT" \
+  --events .skill-forge/events.jsonl \
+  --workspace .skill-forge
+```
+
+This runs **only** Forge's \`agent_bridge.py\` and \`skill_forge.py observe\`,
+not evaluation, attestation, auto-promotion, installation, or any candidate
+skill. The environment running this command must already have the trusted Forge
+package on disk. The \`--forge-root\` parameter is an explicit trust decision:
+do not point it at an unreviewed third-party directory.
+
+The wrapper reports event ingestion counts and candidate proposals. The
+reported task successes come from the event producer and are **not independent
+validation**. In particular, repeated GitHub CI reruns are not three distinct
+agent task successes. Proposed candidate files remain in
+\`.skill-forge/inbox\` without evidence or auto-installation.
+
+### Verification of adapter and orchestrator
+
+```bash
+python -m unittest discover -s tests -p 'test_forge_*.py' -v
+```
+
+The orchestrator tests mock the installed Forge subprocesses to verify
+argument boundaries and fail-closed behavior. They **do not** establish
+end-to-end execution with a real installed Forge or independently verified
+skill performance. Perform a separately labeled sandbox smoke test with the
+real installed Forge before deployment.
+
 ## 4. Evaluation and promotion are separate
 
 A different, access-controlled evaluator must freeze holdouts and run matched
