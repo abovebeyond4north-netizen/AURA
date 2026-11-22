@@ -4,7 +4,9 @@ on:
   pull_request:
     paths:
       - scripts/forge_task_event.py
+      - scripts/forge_discover.py
       - tests/test_forge_task_event.py
+      - tests/test_forge_discover.py
       - docs/skill_forge_integration.md
       - .github/workflows/skill-forge-adapter-tests.yml
   push:
@@ -12,7 +14,9 @@ on:
       - feature/evidence-gated-skill-forge-events
     paths:
       - scripts/forge_task_event.py
+      - scripts/forge_discover.py
       - tests/test_forge_task_event.py
+      - tests/test_forge_discover.py
       - docs/skill_forge_integration.md
       - .github/workflows/skill-forge-adapter-tests.yml
   workflow_dispatch:
@@ -33,5 +37,5 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Run adapter regression tests (no extra dependencies)
-        run: python -m unittest discover -s tests -p 'test_forge_task_event.py' -v
+      - name: Run exporter and proposal-only pipeline tests
+        run: python -m unittest discover -s tests -p 'test_forge_*.py' -v
